@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "263379035610",
+    "project_id": "nsta-fresh",
+    "storage_bucket": "nsta-fresh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:263379035610:android:0668fd1b73e72d01bf8ce3",
+        "android_client_info": {
+          "package_name": "com.example.nstafreshv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "263379035610-j767092oph7ar1kvmib4hiq5hkpdi28g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgjaxE4mxYR_eeA266wCw-xlLpvnNXOuM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "263379035610-j767092oph7ar1kvmib4hiq5hkpdi28g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
