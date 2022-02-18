@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(title)),
+      //appBar: AppBar(title: const Text(title)),
       body: const HomeContent(),
     );
   }
@@ -30,20 +30,18 @@ class _HomeContentState extends State<HomeContent> {
     final ButtonStyle style =
         ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          const SizedBox(height: 30),
-          ElevatedButton(
-            style: style,
-            onPressed: () {
-              Navigator.of(context).pushNamed('/BookCleaning');
-            },
-            child: const Text('Book a Cleaning'),
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        const SizedBox(height: 30),
+        ElevatedButton(
+          style: style,
+          onPressed: () {
+            Navigator.of(context).pushNamed('/BookCleaning');
+          },
+          child: const Text('Book a Cleaning'),
+        ),
+      ],
     );
   }
 }
