@@ -37,7 +37,7 @@ class BookCleaningContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -46,7 +46,7 @@ class BookCleaningContent extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -55,7 +55,7 @@ class BookCleaningContent extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -64,7 +64,7 @@ class BookCleaningContent extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -73,7 +73,7 @@ class BookCleaningContent extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
