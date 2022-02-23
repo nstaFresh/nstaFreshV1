@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'route_generator.dart';
 import 'home.dart';
+import 'book_cleaning.dart';
+import 'payment.dart';
 
 class BookCleaning extends StatelessWidget {
   const BookCleaning({Key? key}) : super(key: key);
@@ -11,13 +13,14 @@ class BookCleaning extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(title),
-        leading: BackButton(
-          onPressed: () => Navigator.pop(context),
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          title: const Text(title),
+          leading: BackButton(
+            onPressed: () => Navigator.pop(context),
+          ),
         ),
-      ),
-      body: const BookCleaningContent(),
+        body: const BookCleaningContent(),
     );
   }
 }
@@ -26,7 +29,7 @@ class BookCleaningContent extends StatelessWidget {
   const BookCleaningContent({Key? key}) : super(key: key);
 
   static final ButtonStyle style =
-        ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
+      ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
   @override
   Widget build(BuildContext context) {
@@ -80,19 +83,19 @@ class BookCleaningContent extends StatelessWidget {
         ),
         Center(
           child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            //const SizedBox(height: 30),
-            ElevatedButton(
-              style: style,
-              onPressed: () {
-                Navigator.of(context).pushNamed('/Checkout');
-            },
-            child: const Text('Submit'),
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              //const SizedBox(height: 30),
+              ElevatedButton(
+                style: style,
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/Payment');
+                },
+                child: const Text('Submit'),
+              ),
+            ],
           ),
-        ],
-      ),
-    ),
+        ),
       ],
     );
   }

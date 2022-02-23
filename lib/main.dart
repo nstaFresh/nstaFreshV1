@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'main.dart';
 import 'route_generator.dart';
 import 'home.dart';
 import 'book_cleaning.dart';
+import 'payment.dart';
 
 void main() => runApp(const MyApp());
 
-Color c = new Color.fromRGBO(0, 0, 0, 1.0);
+//Color c = new Color.fromRGBO(0, 0, 0, 1.0);
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       onGenerateRoute: RouteGenerator.generateRoute,
-      theme: ThemeData(scaffoldBackgroundColor: c),
+      //theme: ThemeData(scaffoldBackgroundColor: c),
     );
   }
 }
