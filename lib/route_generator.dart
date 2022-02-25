@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'route_generator.dart';
 import 'home.dart';
 import 'book_cleaning.dart';
+import 'payment.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -11,6 +13,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Home());
       case '/BookCleaning':
         return MaterialPageRoute(builder: (_) => BookCleaning());
+      case '/Payment':
+        return MaterialPageRoute(builder: (_) => Payment());
       default:
         return errorRoute();
     }
@@ -22,7 +26,9 @@ class RouteGenerator {
         appBar: AppBar(
           title: Text('Error'),
         ),
-        body: Center(child: Text('ERROR!'),),
+        body: Center(
+          child: Text('ERROR!'),
+        ),
       );
     });
   }

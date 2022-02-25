@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'route_generator.dart';
 import 'home.dart';
+import 'book_cleaning.dart';
+import 'payment.dart';
 
 class BookCleaning extends StatelessWidget {
   const BookCleaning({Key? key}) : super(key: key);
@@ -11,7 +13,7 @@ class BookCleaning extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text(title),
         leading: BackButton(
@@ -35,7 +37,7 @@ class BookCleaningContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -44,7 +46,7 @@ class BookCleaningContent extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -53,7 +55,7 @@ class BookCleaningContent extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -62,7 +64,7 @@ class BookCleaningContent extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -71,7 +73,7 @@ class BookCleaningContent extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 7),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
@@ -87,7 +89,7 @@ class BookCleaningContent extends StatelessWidget {
               ElevatedButton(
                 style: style,
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/Checkout');
+                  Navigator.of(context).pushNamed('/Payment');
                 },
                 child: const Text('Submit'),
               ),
