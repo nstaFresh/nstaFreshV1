@@ -11,6 +11,7 @@ class BookCleaning extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: const Text(title),
         leading: BackButton(
@@ -26,7 +27,7 @@ class BookCleaningContent extends StatelessWidget {
   const BookCleaningContent({Key? key}) : super(key: key);
 
   static final ButtonStyle style =
-        ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
+      ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
   @override
   Widget build(BuildContext context) {
@@ -80,19 +81,19 @@ class BookCleaningContent extends StatelessWidget {
         ),
         Center(
           child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            //const SizedBox(height: 30),
-            ElevatedButton(
-              style: style,
-              onPressed: () {
-                Navigator.of(context).pushNamed('/Checkout');
-            },
-            child: const Text('Submit'),
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              //const SizedBox(height: 30),
+              ElevatedButton(
+                style: style,
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/Checkout');
+                },
+                child: const Text('Submit'),
+              ),
+            ],
           ),
-        ],
-      ),
-    ),
+        ),
       ],
     );
   }
