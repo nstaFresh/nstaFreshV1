@@ -8,7 +8,7 @@ import 'payment.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Stripe.merchantIdentifier = 'I DRINK WATER';
+  Stripe.merchantIdentifier = 'Ibrahim Shah';
   Stripe.publishableKey = 'pk_test_pPq9ppt7qkZ1cNMBebnGtOlS';
   await Stripe.instance.applySettings();
 
