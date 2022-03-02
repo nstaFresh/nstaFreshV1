@@ -13,14 +13,14 @@ class BookCleaning extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: const Text(title),
-          leading: BackButton(
-            onPressed: () => Navigator.pop(context),
-          ),
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: const Text(title),
+        leading: BackButton(
+          onPressed: () => Navigator.pop(context),
         ),
-        body: const BookCleaningContent(),
+      ),
+      body: const BookCleaningContent(),
     );
   }
 }

@@ -26,7 +26,9 @@ class RouteGenerator {
         appBar: AppBar(
           title: Text('Error'),
         ),
-        body: Center(child: Text('ERROR!'),),
+        body: Center(
+          child: Text('ERROR!'),
+        ),
       );
     });
   }
