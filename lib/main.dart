@@ -5,6 +5,7 @@ import 'route_generator.dart';
 import 'home.dart';
 import 'book_cleaning.dart';
 import 'payment.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
