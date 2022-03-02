@@ -14,7 +14,7 @@ class RouteGenerator {
       case '/BookCleaning':
         return MaterialPageRoute(builder: (_) => BookCleaning());
       case '/Payment':
-        return MaterialPageRoute(builder: (_) => Home());
+        return MaterialPageRoute(builder: (_) => Payment());
       default:
         return errorRoute();
     }
