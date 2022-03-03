@@ -14,7 +14,7 @@ class RouteGenerator {
       case '/BookCleaning':
         return MaterialPageRoute(builder: (_) => BookCleaning());
       case '/Payment':
-        return MaterialPageRoute(builder: (_) => Home());
+        return MaterialPageRoute(builder: (_) => Payment());
       default:
         return errorRoute();
     }
@@ -26,7 +26,9 @@ class RouteGenerator {
         appBar: AppBar(
           title: Text('Error'),
         ),
-        body: Center(child: Text('ERROR!'),),
+        body: Center(
+          child: Text('ERROR!'),
+        ),
       );
     });
   }
