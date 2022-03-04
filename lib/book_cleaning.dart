@@ -26,8 +26,6 @@ class BookCleaning extends StatelessWidget {
 }
 
 class BookCleaningContent extends StatefulWidget {
-  static TextEditingController shoeNameController = TextEditingController();
-
   const BookCleaningContent({Key? key}) : super(key: key);
 
   static final ButtonStyle style =
@@ -38,20 +36,8 @@ class BookCleaningContent extends StatefulWidget {
 }
 
 class _BookCleaningContentState extends State<BookCleaningContent> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  void validateAndSave() {
-    final FormState? form = _formKey.currentState;
-
-    if (form != null) {
-      if (form.validate()) {
-        print('Form is valid');
-        Navigator.of(context).pushNamed('/Payment');
-      } else {
-        print('Form is invalid');
-      }
-    }
-  }
+  static TextEditingController shoeNameController = TextEditingController();
+  bool empty = false;
 
   @override
   Widget build(BuildContext context) {
@@ -61,13 +47,7 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
-            validator: (value) {
-              if (value == null || value.length > 3) {
-                //value == null || value.isEmpty) {
-                return 'Enter valid name of more then 5 characters!';
-              }
-              return null;
-            },
+            controller: shoeNameController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Shoe Name',
@@ -117,7 +97,9 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
               //const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  validateAndSave;
+                  if (shoeNameController.text.isEmpty) {
+                    print("fuck you");
+                  }
                 },
                 child: const Text('Submit'),
               ),
