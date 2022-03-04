@@ -25,11 +25,33 @@ class BookCleaning extends StatelessWidget {
   }
 }
 
-class BookCleaningContent extends StatelessWidget {
+class BookCleaningContent extends StatefulWidget {
+  static TextEditingController shoeNameController = TextEditingController();
+
   const BookCleaningContent({Key? key}) : super(key: key);
 
   static final ButtonStyle style =
       ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
+
+  @override
+  _BookCleaningContentState createState() => _BookCleaningContentState();
+}
+
+class _BookCleaningContentState extends State<BookCleaningContent> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  void validateAndSave() {
+    final FormState? form = _formKey.currentState;
+
+    if (form != null) {
+      if (form.validate()) {
+        print('Form is valid');
+        Navigator.of(context).pushNamed('/Payment');
+      } else {
+        print('Form is invalid');
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +61,13 @@ class BookCleaningContent extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
+            validator: (value) {
+              if (value == null || value.length > 3) {
+                //value == null || value.isEmpty) {
+                return 'Enter valid name of more then 5 characters!';
+              }
+              return null;
+            },
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Shoe Name',
@@ -87,9 +116,8 @@ class BookCleaningContent extends StatelessWidget {
             children: <Widget>[
               //const SizedBox(height: 30),
               ElevatedButton(
-                style: style,
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/Payment');
+                  validateAndSave;
                 },
                 child: const Text('Submit'),
               ),
