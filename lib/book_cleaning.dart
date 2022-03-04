@@ -37,6 +37,10 @@ class BookCleaningContent extends StatefulWidget {
 
 class _BookCleaningContentState extends State<BookCleaningContent> {
   static TextEditingController shoeNameController = TextEditingController();
+  static TextEditingController pickUpTimeController = TextEditingController();
+  static TextEditingController dropOffTimeController = TextEditingController();
+  static TextEditingController locationController = TextEditingController();
+  static TextEditingController phoneNumberController = TextEditingController();
   bool empty = false;
 
   @override
@@ -57,6 +61,7 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
+            controller: pickUpTimeController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Pick Up Time',
@@ -66,6 +71,7 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
+            controller: dropOffTimeController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Drop Off Time',
@@ -75,6 +81,7 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
+            controller: locationController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Location',
@@ -84,6 +91,7 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
+            controller: phoneNumberController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Phone Number',
@@ -97,8 +105,10 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
               //const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  if (shoeNameController.text.isEmpty) {
+                  if (shoeNameController.text.isEmpty || pickUpTimeController.text.isEmpty || dropOffTimeController.text.isEmpty || locationController.text.isEmpty || phoneNumberController.text.isEmpty || phoneNumberController.text.length != 10) {
                     print("fuck you");
+                  } else {
+                    Navigator.of(context).pushNamed('/Payment');
                   }
                 },
                 child: const Text('Submit'),
