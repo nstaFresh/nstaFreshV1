@@ -25,11 +25,23 @@ class BookCleaning extends StatelessWidget {
   }
 }
 
-class BookCleaningContent extends StatelessWidget {
+class BookCleaningContent extends StatefulWidget {
   const BookCleaningContent({Key? key}) : super(key: key);
 
   static final ButtonStyle style =
       ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
+
+  @override
+  _BookCleaningContentState createState() => _BookCleaningContentState();
+}
+
+class _BookCleaningContentState extends State<BookCleaningContent> {
+  static TextEditingController shoeNameController = TextEditingController();
+  static TextEditingController pickUpTimeController = TextEditingController();
+  static TextEditingController dropOffTimeController = TextEditingController();
+  static TextEditingController locationController = TextEditingController();
+  static TextEditingController phoneNumberController = TextEditingController();
+  bool empty = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +51,7 @@ class BookCleaningContent extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
+            controller: shoeNameController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Shoe Name',
@@ -48,6 +61,7 @@ class BookCleaningContent extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
+            controller: pickUpTimeController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Pick Up Time',
@@ -57,6 +71,7 @@ class BookCleaningContent extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
+            controller: dropOffTimeController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Drop Off Time',
@@ -66,6 +81,7 @@ class BookCleaningContent extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
+            controller: locationController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Location',
@@ -75,6 +91,7 @@ class BookCleaningContent extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
+            controller: phoneNumberController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Phone Number',
@@ -87,9 +104,12 @@ class BookCleaningContent extends StatelessWidget {
             children: <Widget>[
               //const SizedBox(height: 30),
               ElevatedButton(
-                style: style,
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/Payment');
+                  if (shoeNameController.text.isEmpty || pickUpTimeController.text.isEmpty || dropOffTimeController.text.isEmpty || locationController.text.isEmpty || phoneNumberController.text.isEmpty || phoneNumberController.text.length != 10) {
+                    print("fuck you");
+                  } else {
+                    Navigator.of(context).pushNamed('/Payment');
+                  }
                 },
                 child: const Text('Submit'),
               ),
