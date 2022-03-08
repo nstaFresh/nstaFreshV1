@@ -7,8 +7,14 @@ import 'address.dart';
 import 'payment.dart';
 import 'payment_complete.dart';
 
+//we need name, shoe name, description
 class Address extends StatelessWidget {
-  const Address({Key? key}) : super(key: key);
+  final String name;
+  final String shoeName;
+  final String description;
+  final String phoneNumber;
+
+  const Address(this.name, this.shoeName, this.description, this.phoneNumber);
 
   static const String title = 'Address Info';
 
@@ -17,7 +23,7 @@ class Address extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text(title),
+        title: Text(name),
         leading: BackButton(
           onPressed: () => Navigator.pop(context),
         ),
@@ -108,7 +114,12 @@ class _AddressContentState extends State<AddressContent> {
               //const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  if (addressLine1Controller.text.isEmpty || postalCodeController.text.isEmpty || postalCodeController.text.length != 5 || cityController.text.isEmpty || stateController.text.isEmpty || countryController.text.isEmpty) {
+                  if (addressLine1Controller.text.isEmpty ||
+                      postalCodeController.text.isEmpty ||
+                      postalCodeController.text.length != 5 ||
+                      cityController.text.isEmpty ||
+                      stateController.text.isEmpty ||
+                      countryController.text.isEmpty) {
                     print("fuck you");
                   } else {
                     Navigator.of(context).pushNamed('/Payment');

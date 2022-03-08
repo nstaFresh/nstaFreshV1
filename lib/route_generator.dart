@@ -16,7 +16,11 @@ class RouteGenerator {
       case '/BookCleaning':
         return MaterialPageRoute(builder: (_) => BookCleaning());
       case '/Address':
-        return MaterialPageRoute(builder: (_) => Address());
+        return MaterialPageRoute(builder: (BuildContext context) {
+          final args = settings.arguments as BookCleaningInfo;
+          return Address(
+              args.name, args.shoeName, args.description, args.phoneNumber);
+        });
       case '/Payment':
         return MaterialPageRoute(builder: (_) => Payment());
       case '/PaymentComplete':
