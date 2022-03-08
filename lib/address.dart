@@ -170,7 +170,7 @@ class _AddressContentState extends State<AddressContent> {
                         stateController.text,
                         countryController.text);
 
-                    //Navigator.of(context).pushNamed('/Payment');
+                    Navigator.of(context).pushNamed('/Payment');
                   }
                 },
                 child: const Text('Submit'),
