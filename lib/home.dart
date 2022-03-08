@@ -15,7 +15,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(title)),
+      appBar: AppBar(
+        title: const Text(title),
+        automaticallyImplyLeading: false,
+      ),
       body: const HomeContent(),
     );
   }
@@ -40,13 +43,13 @@ class _HomeContentState extends State<HomeContent> {
         children: <Widget>[
           const SizedBox(height: 30),
           ElevatedButton(
-        style: style,
-        onPressed: () {
-          Navigator.of(context).pushNamed('/BookCleaning');
-        },
-        child: const Text('Book a Cleaning'),
-      ),
-      ],
+            style: style,
+            onPressed: () {
+              Navigator.of(context).pushNamed('/BookCleaning');
+            },
+            child: const Text('Book a Cleaning'),
+          ),
+        ],
       ),
     );
   }

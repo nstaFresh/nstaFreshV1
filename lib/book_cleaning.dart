@@ -97,10 +97,19 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
               //const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  if (nameController.text.isEmpty || shoeNameController.text.isEmpty || descriptionController.text.isEmpty || phoneNumberController.text.isEmpty || phoneNumberController.text.length != 10) {
+                  if (nameController.text.isEmpty ||
+                      shoeNameController.text.isEmpty ||
+                      descriptionController.text.isEmpty ||
+                      phoneNumberController.text.isEmpty ||
+                      phoneNumberController.text.length != 10) {
                     print("fuck you");
                   } else {
-                    Navigator.of(context).pushNamed('/Address');
+                    Navigator.of(context).pushNamed('/Address',
+                        arguments: BookCleaningInfo(
+                            nameController.text,
+                            shoeNameController.text,
+                            descriptionController.text,
+                            phoneNumberController.text));
                   }
                 },
                 child: const Text('Next'),
@@ -111,4 +120,14 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
       ],
     );
   }
+}
+
+class BookCleaningInfo {
+  final String name;
+  final String shoeName;
+  final String description;
+  final String phoneNumber;
+
+  const BookCleaningInfo(
+      this.name, this.shoeName, this.description, this.phoneNumber);
 }
