@@ -3,7 +3,9 @@ import 'main.dart';
 import 'route_generator.dart';
 import 'home.dart';
 import 'book_cleaning.dart';
+import 'address.dart';
 import 'payment.dart';
+import 'payment_complete.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -13,8 +15,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Home());
       case '/BookCleaning':
         return MaterialPageRoute(builder: (_) => BookCleaning());
+      case '/Address':
+        return MaterialPageRoute(builder: (_) => Address());
       case '/Payment':
         return MaterialPageRoute(builder: (_) => Payment());
+      case '/PaymentComplete':
+        return MaterialPageRoute(builder: (_) => PaymentComplete());
       default:
         return errorRoute();
     }

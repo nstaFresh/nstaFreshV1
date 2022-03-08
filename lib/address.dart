@@ -7,10 +7,10 @@ import 'address.dart';
 import 'payment.dart';
 import 'payment_complete.dart';
 
-class BookCleaning extends StatelessWidget {
-  const BookCleaning({Key? key}) : super(key: key);
+class Address extends StatelessWidget {
+  const Address({Key? key}) : super(key: key);
 
-  static const String title = 'Book a Cleaning';
+  static const String title = 'Address Info';
 
   @override
   Widget build(BuildContext context) {
@@ -22,26 +22,27 @@ class BookCleaning extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: const BookCleaningContent(),
+      body: const AddressContent(),
     );
   }
 }
 
-class BookCleaningContent extends StatefulWidget {
-  const BookCleaningContent({Key? key}) : super(key: key);
+class AddressContent extends StatefulWidget {
+  const AddressContent({Key? key}) : super(key: key);
 
   static final ButtonStyle style =
       ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
   @override
-  _BookCleaningContentState createState() => _BookCleaningContentState();
+  _AddressContentState createState() => _AddressContentState();
 }
 
-class _BookCleaningContentState extends State<BookCleaningContent> {
-  static TextEditingController nameController = TextEditingController();
-  static TextEditingController shoeNameController = TextEditingController();
-  static TextEditingController descriptionController = TextEditingController();
-  static TextEditingController phoneNumberController = TextEditingController();
+class _AddressContentState extends State<AddressContent> {
+  static TextEditingController addressLine1Controller = TextEditingController();
+  static TextEditingController postalCodeController = TextEditingController();
+  static TextEditingController cityController = TextEditingController();
+  static TextEditingController stateController = TextEditingController();
+  static TextEditingController countryController = TextEditingController();
 
   bool empty = false;
 
@@ -53,40 +54,50 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
-            controller: nameController,
+            controller: addressLine1Controller,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'Name',
+              labelText: 'Address Line 1',
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
-            controller: shoeNameController,
+            controller: postalCodeController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'Shoe Name',
+              labelText: 'Postal Code',
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
-            controller: descriptionController,
+            controller: cityController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'Description (example: lots of mud on bottom of sole)',
+              labelText: 'City',
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: TextFormField(
-            controller: phoneNumberController,
+            controller: stateController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'Phone Number',
+              labelText: 'State',
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+          child: TextFormField(
+            controller: countryController,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Country',
             ),
           ),
         ),
@@ -97,13 +108,13 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
               //const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  if (nameController.text.isEmpty || shoeNameController.text.isEmpty || descriptionController.text.isEmpty || phoneNumberController.text.isEmpty || phoneNumberController.text.length != 10) {
+                  if (addressLine1Controller.text.isEmpty || postalCodeController.text.isEmpty || postalCodeController.text.length != 5 || cityController.text.isEmpty || stateController.text.isEmpty || countryController.text.isEmpty) {
                     print("fuck you");
                   } else {
-                    Navigator.of(context).pushNamed('/Address');
+                    Navigator.of(context).pushNamed('/Payment');
                   }
                 },
-                child: const Text('Next'),
+                child: const Text('Submit'),
               ),
             ],
           ),

@@ -3,13 +3,15 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:http/http.dart';
 import 'main.dart';
 import 'route_generator.dart';
 import 'home.dart';
 import 'book_cleaning.dart';
+import 'address.dart';
 import 'payment.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:http/http.dart';
+import 'payment_complete.dart';
 
 class Payment extends StatefulWidget {
   const Payment({Key? key}) : super(key: key);
@@ -62,6 +64,7 @@ class _PaymentState extends State<Payment> {
       await Stripe.instance.presentPaymentSheet();
       setState(() {
         paymentIntentData['clientSecret'] = null;
+        Navigator.of(context).pushNamed('/PaymentComplete');
       });
     } catch (e) {
       print(e);
