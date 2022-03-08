@@ -15,7 +15,7 @@ class PaymentComplete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(title)),
+      appBar: AppBar(title: const Text(title), automaticallyImplyLeading: false,),
       body: const PaymentCompleteContent(),
     );
   }
@@ -38,7 +38,7 @@ class _PaymentCompleteContentState extends State<PaymentCompleteContent> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text('Payment complete! Thanks for using Nsta Fresh.', style: TextStyle(fontSize: 25),),
+          Center(child: Text('Payment complete! Thanks for using Nsta Fresh.', style: TextStyle(fontSize: 20),textAlign: TextAlign.center,)),
           const SizedBox(height: 30),
           ElevatedButton(
         style: style,
