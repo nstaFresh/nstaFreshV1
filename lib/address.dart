@@ -66,10 +66,7 @@ class AddressContent extends StatefulWidget {
 }
 
 class _AddressContentState extends State<AddressContent> {
- 
-
-  _AddressContentState(
-      );
+  _AddressContentState();
 
   late AddressInfo infoForPayment;
   static TextEditingController addressLine1Controller = TextEditingController();
@@ -142,7 +139,6 @@ class _AddressContentState extends State<AddressContent> {
               //const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  
                   String name = widget.name;
                   String shoeName = widget.shoeName;
                   String description = widget.description;
@@ -156,10 +152,7 @@ class _AddressContentState extends State<AddressContent> {
                       countryController.text.isEmpty) {
                     print("fuck you");
                   } else {
-                    print(name);
-                    print(shoeName);
-                    print(description);
-                    print(phoneNumber);
+                   
 
                     AddressInfo infoForPayment = new AddressInfo(
                         name,
@@ -170,6 +163,16 @@ class _AddressContentState extends State<AddressContent> {
                         cityController.text,
                         stateController.text,
                         countryController.text);
+
+                    print(infoForPayment.name);
+                    print(infoForPayment.shoeName);
+                    print(infoForPayment.phoneNumber);
+                    print(infoForPayment.addressLine);
+                    print(infoForPayment.postalCode);
+                    print(infoForPayment.city);
+                    print(infoForPayment.state);
+                    print(infoForPayment.country);
+
 
                     //Navigator.of(context).pushNamed('/Payment');
                   }
