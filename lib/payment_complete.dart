@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'route_generator.dart';
-import 'home.dart';
+import 'payment_complete.dart';
 import 'book_cleaning.dart';
 import 'address.dart';
 import 'payment.dart';
 import 'payment_complete.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class PaymentComplete extends StatelessWidget {
+  const PaymentComplete({Key? key}) : super(key: key);
 
-  static const String title = 'Nsta Fresh';
+  static const String title = 'Payment Complete';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(title)),
-      body: const HomeContent(),
+      body: const PaymentCompleteContent(),
     );
   }
 }
 
-class HomeContent extends StatefulWidget {
-  const HomeContent({Key? key}) : super(key: key);
+class PaymentCompleteContent extends StatefulWidget {
+  const PaymentCompleteContent({Key? key}) : super(key: key);
 
   @override
-  State<HomeContent> createState() => _HomeContentState();
+  State<PaymentCompleteContent> createState() => _PaymentCompleteContentState();
 }
 
-class _HomeContentState extends State<HomeContent> {
+class _PaymentCompleteContentState extends State<PaymentCompleteContent> {
   @override
   Widget build(BuildContext context) {
     final ButtonStyle style =
@@ -38,13 +38,14 @@ class _HomeContentState extends State<HomeContent> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
+          Text('Payment complete! Thanks for using Nsta Fresh.', style: TextStyle(fontSize: 25),),
           const SizedBox(height: 30),
           ElevatedButton(
         style: style,
         onPressed: () {
-          Navigator.of(context).pushNamed('/BookCleaning');
+          Navigator.of(context).pushNamed('/Home');
         },
-        child: const Text('Book a Cleaning'),
+        child: const Text('Home'),
       ),
       ],
       ),
