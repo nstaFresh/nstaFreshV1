@@ -62,18 +62,14 @@ class AddressContent extends StatefulWidget {
       ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
   @override
-  _AddressContentState createState() => _AddressContentState(
-      this.name, this.shoeName, this.description, this.phoneNumber);
+  _AddressContentState createState() => _AddressContentState();
 }
 
 class _AddressContentState extends State<AddressContent> {
-  final String name;
-  final String shoeName;
-  final String description;
-  final String phoneNumber;
+ 
 
   _AddressContentState(
-      this.name, this.shoeName, this.description, this.phoneNumber);
+      );
 
   late AddressInfo infoForPayment;
   static TextEditingController addressLine1Controller = TextEditingController();
@@ -146,7 +142,12 @@ class _AddressContentState extends State<AddressContent> {
               //const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  String bruh = widget.name;
+                  
+                  String name = widget.name;
+                  String shoeName = widget.shoeName;
+                  String description = widget.description;
+                  String phoneNumber = widget.phoneNumber;
+
                   if (addressLine1Controller.text.isEmpty ||
                       postalCodeController.text.isEmpty ||
                       postalCodeController.text.length != 5 ||
@@ -155,13 +156,13 @@ class _AddressContentState extends State<AddressContent> {
                       countryController.text.isEmpty) {
                     print("fuck you");
                   } else {
-                    print(this.name);
-                    print(this.shoeName);
-                    print(this.description);
-                    print(this.phoneNumber);
+                    print(name);
+                    print(shoeName);
+                    print(description);
+                    print(phoneNumber);
 
                     AddressInfo infoForPayment = new AddressInfo(
-                        this.name,
+                        name,
                         shoeName,
                         phoneNumber,
                         addressLine1Controller.text,
@@ -170,7 +171,7 @@ class _AddressContentState extends State<AddressContent> {
                         stateController.text,
                         countryController.text);
 
-                    Navigator.of(context).pushNamed('/Payment');
+                    //Navigator.of(context).pushNamed('/Payment');
                   }
                 },
                 child: const Text('Submit'),
