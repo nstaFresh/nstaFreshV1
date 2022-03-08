@@ -14,7 +14,30 @@ import 'payment.dart';
 import 'payment_complete.dart';
 
 class Payment extends StatefulWidget {
-  const Payment({Key? key}) : super(key: key);
+  //we need name, shoeName, description, phoneNumber, address line, postal code,
+  //city, state, country
+
+ /* final String name;
+  final String shoeName;
+  final String description;
+  final String phoneNumber;
+  final String addressLine;
+  final String postalCode;
+  final String city;
+  final String state;
+  final String country;*/
+
+  const Payment(
+    /*this.name,
+    this.shoeName,
+    this.description,
+    this.phoneNumber,
+    this.addressLine,
+    this.postalCode,
+    this.city,
+    this.state,
+    this.country*/
+  );
 
   @override
   _PaymentState createState() => _PaymentState();
@@ -40,7 +63,8 @@ class _PaymentState extends State<Payment> {
   }
 
   Future<void> makePayment() async {
-    final url = Uri.parse("https://nstafreshv2.ibrahimshah.repl.co/create-payment-intent");
+    final url = Uri.parse(
+        "https://nstafreshv2.ibrahimshah.repl.co/create-payment-intent");
 
     final response = await post(url, body: {
       "title": "Request for Payment Intent",
