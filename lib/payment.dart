@@ -15,7 +15,7 @@ import 'payment_complete.dart';
 
 class Payment extends StatefulWidget {
   //we need name, shoeName, description, phoneNumber, address line, postal code,
-  //city, state, 
+  //city, state,
 
   final String name;
   final String shoeName;
@@ -34,29 +34,30 @@ class Payment extends StatefulWidget {
 }
 
 class _PaymentState extends State<Payment> {
+  bool isLoading = false;
+  bool isLoadingNextScreen = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Payment Processing"),
       ),
-      body: Center(
-        child: ElevatedButton(
-          child: Text("Press me to pay"),
-          onPressed: () {
-            print(widget.name);
-            print(widget.shoeName);
-            print(widget.description);
-            print(widget.phoneNumber);
-            print(widget.addressLine);
-            print(widget.postalCode);
-            print(widget.city);
-            print(widget.state);
-            //print("ASDASD");
-            makePayment();
-          },
-        ),
-      ),
+      body: (isLoadingNextScreen)
+          ? Center(child: CircularProgressIndicator())
+          : Center(
+              child: Container(
+                child: (isLoading)
+                    ? CircularProgressIndicator()
+                    : ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          makePayment();
+                        },
+                        child: Text("Press to pay")),
+              ),
+            ),
     );
   }
 
@@ -79,17 +80,21 @@ class _PaymentState extends State<Payment> {
       "name": widget.name,
       "shoeName": widget.shoeName,
       "description": widget.description,
-      "phoneNumber":widget.phoneNumber,
-      "addressLine":widget.addressLine,
-      "postalCode":widget.postalCode,
-      "city":widget.city,
-      "state":widget.state
+      "phoneNumber": widget.phoneNumber,
+      "addressLine": widget.addressLine,
+      "postalCode": widget.postalCode,
+      "city": widget.city,
+      "state": widget.state
     };
+
     final response = await post(
       url,
       headers: {"Content-Type": "application/json"},
       body: json.encode(request),
     );
+    setState(() {
+      isLoading = false;
+    });
     print(response);
 
     Map<String, dynamic> paymentIntentData = jsonDecode(response.body);
@@ -104,11 +109,15 @@ class _PaymentState extends State<Payment> {
             merchantCountryCode: 'US',
             merchantDisplayName: 'Ibrahim Shah'));
 
-    setState(() {});
+    setState(() {
+      //isLoadingNextScreen = true;
+    });
     try {
       await Stripe.instance.presentPaymentSheet();
       setState(() {
+        isLoadingNextScreen = true;
         paymentIntentData['clientSecret'] = null;
+
         Navigator.of(context).pushNamed('/PaymentComplete');
       });
     } catch (e) {
