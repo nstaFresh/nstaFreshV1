@@ -152,11 +152,10 @@ class _AddressContentState extends State<AddressContent> {
                       countryController.text.isEmpty) {
                     print("fuck you");
                   } else {
-                   
-
                     AddressInfo infoForPayment = new AddressInfo(
                         name,
                         shoeName,
+                        description,
                         phoneNumber,
                         addressLine1Controller.text,
                         postalCodeController.text,
@@ -166,6 +165,7 @@ class _AddressContentState extends State<AddressContent> {
 
                     print(infoForPayment.name);
                     print(infoForPayment.shoeName);
+                    print(infoForPayment.description);
                     print(infoForPayment.phoneNumber);
                     print(infoForPayment.addressLine);
                     print(infoForPayment.postalCode);
@@ -173,8 +173,8 @@ class _AddressContentState extends State<AddressContent> {
                     print(infoForPayment.state);
                     print(infoForPayment.country);
 
-
-                    //Navigator.of(context).pushNamed('/Payment');
+                    Navigator.of(context)
+                        .pushNamed('/Payment', arguments: infoForPayment);
                   }
                 },
                 child: const Text('Submit'),
@@ -192,6 +192,7 @@ class AddressInfo {
   //city, state, country
   final String name;
   final String shoeName;
+  final String description;
   final String phoneNumber;
   final String addressLine;
   final String postalCode;
@@ -199,6 +200,6 @@ class AddressInfo {
   final String state;
   final String country;
 
-  AddressInfo(this.name, this.shoeName, this.phoneNumber, this.addressLine,
-      this.postalCode, this.city, this.state, this.country);
+  AddressInfo(this.name, this.shoeName, this.description, this.phoneNumber,
+      this.addressLine, this.postalCode, this.city, this.state, this.country);
 }

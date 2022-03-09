@@ -24,7 +24,19 @@ class RouteGenerator {
       case '/Payment':
         //we need name, shoeName, description, phoneNumber, address line, postal code,
         //city, state, country
-        return MaterialPageRoute(builder: (_) => Payment());
+        return MaterialPageRoute(builder: (BuildContext context) {
+          final args = settings.arguments as AddressInfo;
+          return Payment(
+              args.name,
+              args.shoeName,
+              args.description,
+              args.phoneNumber,
+              args.addressLine,
+              args.postalCode,
+              args.city,
+              args.state,
+              args.country);
+        });
       case '/PaymentComplete':
         return MaterialPageRoute(builder: (_) => PaymentComplete());
       default:

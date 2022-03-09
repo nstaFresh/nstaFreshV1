@@ -17,7 +17,7 @@ class Payment extends StatefulWidget {
   //we need name, shoeName, description, phoneNumber, address line, postal code,
   //city, state, country
 
- /* final String name;
+  final String name;
   final String shoeName;
   final String description;
   final String phoneNumber;
@@ -25,19 +25,10 @@ class Payment extends StatefulWidget {
   final String postalCode;
   final String city;
   final String state;
-  final String country;*/
+  final String country;
 
-  const Payment(
-    /*this.name,
-    this.shoeName,
-    this.description,
-    this.phoneNumber,
-    this.addressLine,
-    this.postalCode,
-    this.city,
-    this.state,
-    this.country*/
-  );
+  const Payment(this.name, this.shoeName, this.description, this.phoneNumber,
+      this.addressLine, this.postalCode, this.city, this.state, this.country);
 
   @override
   _PaymentState createState() => _PaymentState();
@@ -54,6 +45,15 @@ class _PaymentState extends State<Payment> {
         child: ElevatedButton(
           child: Text("Press me to pay"),
           onPressed: () {
+            print(widget.name);
+            print(widget.shoeName);
+            print(widget.description);
+            print(widget.phoneNumber);
+            print(widget.addressLine);
+            print(widget.postalCode);
+            print(widget.city);
+            print(widget.state);
+            print(widget.country);
             //print("ASDASD");
             makePayment();
           },
