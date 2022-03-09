@@ -66,9 +66,15 @@ class _PaymentState extends State<Payment> {
     final url = Uri.parse(
         "https://nstafreshv2.ibrahimshah.repl.co/create-payment-intent");
 
-    final response = await post(url, body: {
-      "title": "Request for Payment Intent",
-    });
+    Map<String, String> bodi = {
+      "title": "post request",
+      "content": "im so freqakingj sicjaksd"
+    };
+    final response = await post(
+      url,
+      headers: {"Content-Type": "application/json"},
+      body: json.encode(bodi),
+    );
     print(response);
 
     Map<String, dynamic> paymentIntentData = jsonDecode(response.body);
