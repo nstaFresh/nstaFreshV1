@@ -15,7 +15,7 @@ import 'payment_complete.dart';
 
 class Payment extends StatefulWidget {
   //we need name, shoeName, description, phoneNumber, address line, postal code,
-  //city, state, country
+  //city, state, 
 
   final String name;
   final String shoeName;
@@ -25,10 +25,9 @@ class Payment extends StatefulWidget {
   final String postalCode;
   final String city;
   final String state;
-  final String country;
 
   const Payment(this.name, this.shoeName, this.description, this.phoneNumber,
-      this.addressLine, this.postalCode, this.city, this.state, this.country);
+      this.addressLine, this.postalCode, this.city, this.state);
 
   @override
   _PaymentState createState() => _PaymentState();
@@ -53,7 +52,6 @@ class _PaymentState extends State<Payment> {
             print(widget.postalCode);
             print(widget.city);
             print(widget.state);
-            print(widget.country);
             //print("ASDASD");
             makePayment();
           },
@@ -66,14 +64,31 @@ class _PaymentState extends State<Payment> {
     final url = Uri.parse(
         "https://nstafreshv2.ibrahimshah.repl.co/create-payment-intent");
 
-    Map<String, String> bodi = {
-      "title": "post request",
-      "content": "im so freqakingj sicjaksd"
+    /*
+                  (widget.name);
+            print(widget.shoeName);
+            print(widget.description);
+            print(widget.phoneNumber);
+            print(widget.addressLine);
+            print(widget.postalCode);
+            print(widget.city);
+            print(widget.state);
+    */
+
+    Map<String, String> request = {
+      "name": widget.name,
+      "shoeName": widget.shoeName,
+      "description": widget.description,
+      "phoneNumber":widget.phoneNumber,
+      "addressLine":widget.addressLine,
+      "postalCode":widget.postalCode,
+      "city":widget.city,
+      "state":widget.state
     };
     final response = await post(
       url,
       headers: {"Content-Type": "application/json"},
-      body: json.encode(bodi),
+      body: json.encode(request),
     );
     print(response);
 

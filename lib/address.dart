@@ -73,7 +73,6 @@ class _AddressContentState extends State<AddressContent> {
   static TextEditingController postalCodeController = TextEditingController();
   static TextEditingController cityController = TextEditingController();
   static TextEditingController stateController = TextEditingController();
-  static TextEditingController countryController = TextEditingController();
 
   bool empty = false;
 
@@ -118,20 +117,11 @@ class _AddressContentState extends State<AddressContent> {
             controller: stateController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'State',
+              labelText: 'State (2 letter state code; e.g. IL)',
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-          child: TextFormField(
-            controller: countryController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Country',
-            ),
-          ),
-        ),
+        
         Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -149,7 +139,7 @@ class _AddressContentState extends State<AddressContent> {
                       postalCodeController.text.length != 5 ||
                       cityController.text.isEmpty ||
                       stateController.text.isEmpty ||
-                      countryController.text.isEmpty) {
+                      stateController.text.length != 2) {
                     print("fuck you");
                   } else {
                     AddressInfo infoForPayment = new AddressInfo(
@@ -160,8 +150,7 @@ class _AddressContentState extends State<AddressContent> {
                         addressLine1Controller.text,
                         postalCodeController.text,
                         cityController.text,
-                        stateController.text,
-                        countryController.text);
+                        stateController.text);
 
                     print(infoForPayment.name);
                     print(infoForPayment.shoeName);
@@ -171,7 +160,6 @@ class _AddressContentState extends State<AddressContent> {
                     print(infoForPayment.postalCode);
                     print(infoForPayment.city);
                     print(infoForPayment.state);
-                    print(infoForPayment.country);
 
                     Navigator.of(context)
                         .pushNamed('/Payment', arguments: infoForPayment);
@@ -189,7 +177,7 @@ class _AddressContentState extends State<AddressContent> {
 
 class AddressInfo {
   //we need name, shoeName, description, phoneNumber, address line, postal code,
-  //city, state, country
+  //city, state, 
   final String name;
   final String shoeName;
   final String description;
@@ -198,8 +186,7 @@ class AddressInfo {
   final String postalCode;
   final String city;
   final String state;
-  final String country;
 
   AddressInfo(this.name, this.shoeName, this.description, this.phoneNumber,
-      this.addressLine, this.postalCode, this.city, this.state, this.country);
+      this.addressLine, this.postalCode, this.city, this.state);
 }
