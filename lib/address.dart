@@ -9,7 +9,6 @@ import 'payment_complete.dart';
 
 //we need name, shoe name, description
 class Address extends StatelessWidget {
-  
   final String name;
   final String shoeName;
   final String description;
@@ -66,7 +65,7 @@ class AddressContent extends StatefulWidget {
   _AddressContentState createState() => _AddressContentState();
 }
 
-enum isShipped {Yes, No}
+enum isShipped { Yes, No }
 
 class _AddressContentState extends State<AddressContent> {
   _AddressContentState();
@@ -78,143 +77,138 @@ class _AddressContentState extends State<AddressContent> {
   static TextEditingController stateController = TextEditingController();
 
   bool empty = false;
-  isShipped _bool = isShipped.Yes;
+  //isShipped _bool = isShipped.Yes;
+  isShipped ? _bool = isShipped.Yes;
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-          child: TextFormField(
-            controller: addressLine1Controller,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Address Line 1',
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+            child: TextFormField(
+              controller: addressLine1Controller,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Address Line 1',
+              ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-          child: TextFormField(
-            controller: postalCodeController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Postal Code',
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+            child: TextFormField(
+              controller: postalCodeController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Postal Code',
+              ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-          child: TextFormField(
-            controller: cityController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'City',
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+            child: TextFormField(
+              controller: cityController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'City',
+              ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-          child: TextFormField(
-            controller: stateController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'State (2 letter state code; e.g. IL)',
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+            child: TextFormField(
+              controller: stateController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'State (2 letter state code; e.g. IL)',
+              ),
             ),
           ),
-        ),
-
-
-
-        Column(  
-      children: <Widget>[  
-        ListTile(  
-          title: const Text('www.javatpoint.com'),  
-          leading: Radio(  
-            value: isShipped.Yes,
-            groupValue: _bool,
-            onChanged: (isShipped value) {  
-              setState(() {
-                _bool = value;  
-              });  
-            },  
-          ),  
-        ),  
-        ListTile(  
-          title: const Text('www.w3school.com'),  
-          leading: Radio(  
-            value: isShipped.No,  
-            groupValue: _site,  
-            onChanged: (BestTutorSite value) {  
-              setState(() {  
-                _site = value;  
-              });  
-            },  
-          ),  
-        ),  
-
-
-
-        
-        Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+          Column(
             children: <Widget>[
-              //const SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () {
-                  String name = widget.name;
-                  String shoeName = widget.shoeName;
-                  String description = widget.description;
-                  String phoneNumber = widget.phoneNumber;
+              ListTile(
+                title: const Text('Shipping'),
+                leading: Radio<isShipped>(
+                  value: isShipped.Yes,
+                  groupValue: _bool,
+                  onChanged: (isShipped? value) {
+                    setState(() {
+                      _bool = value;
+                    });
+                  },
+                ),
+              ),
+              ListTile(
+                title: const Text('Drop Off/Pick Up'),
+                leading: Radio<isShipped>(
+                  value: isShipped.No,
+                  groupValue: _bool,
+                  onChanged: (isShipped? value) {
+                    setState(() {
+                      _bool = value;
+                    });
+                  },
+                ),
+              ),
+              Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    //const SizedBox(height: 30),
+                    ElevatedButton(
+                      onPressed: () {
+                        String name = widget.name;
+                        String shoeName = widget.shoeName;
+                        String description = widget.description;
+                        String phoneNumber = widget.phoneNumber;
 
-                  if (addressLine1Controller.text.isEmpty ||
-                      postalCodeController.text.isEmpty ||
-                      postalCodeController.text.length != 5 ||
-                      cityController.text.isEmpty ||
-                      stateController.text.isEmpty ||
-                      stateController.text.length != 2) {
-                    print("fuck you");
-                  } else {
-                    //add the boolean for shipping/not shipping into this constructor
-                    AddressInfo infoForPayment = new AddressInfo(
-                        name,
-                        shoeName,
-                        description,
-                        phoneNumber,
-                        addressLine1Controller.text,
-                        postalCodeController.text,
-                        cityController.text,
-                        stateController.text,
-                        );
+                        if (addressLine1Controller.text.isEmpty ||
+                            postalCodeController.text.isEmpty ||
+                            postalCodeController.text.length != 5 ||
+                            cityController.text.isEmpty ||
+                            stateController.text.isEmpty ||
+                            stateController.text.length != 2) {
+                          print("fuck you");
+                        } else {
+                          //add the boolean for shipping/not shipping into this constructor
+                          AddressInfo infoForPayment = new AddressInfo(
+                            name,
+                            shoeName,
+                            description,
+                            phoneNumber,
+                            addressLine1Controller.text,
+                            postalCodeController.text,
+                            cityController.text,
+                            stateController.text,
+                          );
 
-                    print(infoForPayment.name);
-                    print(infoForPayment.shoeName);
-                    print(infoForPayment.description);
-                    print(infoForPayment.phoneNumber);
-                    print(infoForPayment.addressLine);
-                    print(infoForPayment.postalCode);
-                    print(infoForPayment.city);
-                    print(infoForPayment.state);
+                          print(infoForPayment.name);
+                          print(infoForPayment.shoeName);
+                          print(infoForPayment.description);
+                          print(infoForPayment.phoneNumber);
+                          print(infoForPayment.addressLine);
+                          print(infoForPayment.postalCode);
+                          print(infoForPayment.city);
+                          print(infoForPayment.state);
 
-                    Navigator.of(context)
-                        .pushNamed('/Payment', arguments: infoForPayment);
-                  }
-                },
-                child: const Text('Submit'),
+                          Navigator.of(context)
+                              .pushNamed('/Payment', arguments: infoForPayment);
+                        }
+                      },
+                      child: const Text('Submit'),
+                    ),
+                  ],
+                ),
               ),
             ],
-          ),
-        ),
-      ],
-    );
+          )
+        ]);
   }
 }
 
 class AddressInfo {
   //we need name, shoeName, description, phoneNumber, address line, postal code,
-  //city, state, 
+  //city, state,
   final String name;
   final String shoeName;
   final String description;
