@@ -14,36 +14,94 @@ import 'payment.dart';
 import 'payment_complete.dart';
 
 class Payment extends StatefulWidget {
-  const Payment({Key? key}) : super(key: key);
+  //we need name, shoeName, description, phoneNumber, address line, postal code,
+  //city, state,
+
+  final String name;
+  final String shoeName;
+  final String description;
+  final String phoneNumber;
+  final String addressLine;
+  final String postalCode;
+  final String city;
+  final String state;
+  //add final boolean is shipped
+  const Payment(
+      this.name,
+      this.shoeName,
+      this.description,
+      this.phoneNumber,
+      this.addressLine,
+      this.postalCode,
+      this.city,
+      this.state //add in constructor
+      );
 
   @override
   _PaymentState createState() => _PaymentState();
 }
 
 class _PaymentState extends State<Payment> {
+  bool isLoading = false;
+  bool isLoadingNextScreen = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Payment Processing"),
       ),
-      body: Center(
-        child: ElevatedButton(
-          child: Text("Press me to pay"),
-          onPressed: () {
-            //print("ASDASD");
-            makePayment();
-          },
-        ),
-      ),
+      body: (isLoadingNextScreen)
+          ? Center(child: CircularProgressIndicator())
+          : Center(
+              child: Container(
+                child: (isLoading)
+                    ? CircularProgressIndicator()
+                    : ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          makePayment();
+                        },
+                        child: Text("Press to pay")),
+              ),
+            ),
     );
   }
 
   Future<void> makePayment() async {
-    final url = Uri.parse("https://nstafreshv2.ibrahimshah.repl.co/create-payment-intent");
+    final url = Uri.parse(
+        "https://nstafreshv2.ibrahimshah.repl.co/create-payment-intent");
 
-    final response = await post(url, body: {
-      "title": "Request for Payment Intent",
+    /*
+                  (widget.name);
+            print(widget.shoeName);
+            print(widget.description);
+            print(widget.phoneNumber);
+            print(widget.addressLine);
+            print(widget.postalCode);
+            print(widget.city);
+            print(widget.state);
+    */
+
+    Map<String, String> request = {
+      "name": widget.name,
+      "shoeName": widget.shoeName,
+      "description": widget.description,
+      "phoneNumber": widget.phoneNumber,
+      "addressLine": widget.addressLine,
+      "postalCode": widget.postalCode,
+      "city": widget.city,
+      "state": widget.state
+    };
+
+    final response = await post(
+      url,
+      headers: {"Content-Type": "application/json"},
+      body: json.encode(request),
+    );
+    setState(() {
+      isLoading = false;
     });
     print(response);
 
@@ -59,12 +117,19 @@ class _PaymentState extends State<Payment> {
             merchantCountryCode: 'US',
             merchantDisplayName: 'Ibrahim Shah'));
 
-    setState(() {});
+    setState(() {
+      //isLoadingNextScreen = true;
+    });
     try {
       await Stripe.instance.presentPaymentSheet();
       setState(() {
+        isLoadingNextScreen = true;
         paymentIntentData['clientSecret'] = null;
-        Navigator.of(context).pushNamed('/PaymentComplete');
+
+        Navigator.of(context).pushNamed('/PaymentComplete'
+
+            //, arguments: create a class that just has the shipping as an instance variable
+            );
       });
     } catch (e) {
       print(e);

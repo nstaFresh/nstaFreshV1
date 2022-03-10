@@ -9,6 +9,7 @@ import 'payment_complete.dart';
 
 //we need name, shoe name, description
 class Address extends StatelessWidget {
+  
   final String name;
   final String shoeName;
   final String description;
@@ -17,6 +18,22 @@ class Address extends StatelessWidget {
   const Address(this.name, this.shoeName, this.description, this.phoneNumber);
 
   static const String title = 'Address Info';
+
+  String getName() {
+    return this.name;
+  }
+
+  String getShoeName() {
+    return this.shoeName;
+  }
+
+  String getDescription() {
+    return this.description;
+  }
+
+  String getPhoneNumber() {
+    return this.phoneNumber;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +45,19 @@ class Address extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: const AddressContent(),
+      body: AddressContent(
+          getName(), getShoeName(), getDescription(), getPhoneNumber()),
     );
   }
 }
 
 class AddressContent extends StatefulWidget {
-  const AddressContent({Key? key}) : super(key: key);
+  final String name;
+  final String shoeName;
+  final String description;
+  final String phoneNumber;
+  const AddressContent(
+      this.name, this.shoeName, this.description, this.phoneNumber);
 
   static final ButtonStyle style =
       ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
@@ -44,11 +67,13 @@ class AddressContent extends StatefulWidget {
 }
 
 class _AddressContentState extends State<AddressContent> {
+  _AddressContentState();
+
+  late AddressInfo infoForPayment;
   static TextEditingController addressLine1Controller = TextEditingController();
   static TextEditingController postalCodeController = TextEditingController();
   static TextEditingController cityController = TextEditingController();
   static TextEditingController stateController = TextEditingController();
-  static TextEditingController countryController = TextEditingController();
 
   bool empty = false;
 
@@ -93,20 +118,11 @@ class _AddressContentState extends State<AddressContent> {
             controller: stateController,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'State',
+              labelText: 'State (2 letter state code; e.g. IL)',
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-          child: TextFormField(
-            controller: countryController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Country',
-            ),
-          ),
-        ),
+        
         Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -114,15 +130,41 @@ class _AddressContentState extends State<AddressContent> {
               //const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
+                  String name = widget.name;
+                  String shoeName = widget.shoeName;
+                  String description = widget.description;
+                  String phoneNumber = widget.phoneNumber;
+
                   if (addressLine1Controller.text.isEmpty ||
                       postalCodeController.text.isEmpty ||
                       postalCodeController.text.length != 5 ||
                       cityController.text.isEmpty ||
                       stateController.text.isEmpty ||
-                      countryController.text.isEmpty) {
+                      stateController.text.length != 2) {
                     print("fuck you");
                   } else {
-                    Navigator.of(context).pushNamed('/Payment');
+                    //add the boolean for shipping/not shipping into this constructor
+                    AddressInfo infoForPayment = new AddressInfo(
+                        name,
+                        shoeName,
+                        description,
+                        phoneNumber,
+                        addressLine1Controller.text,
+                        postalCodeController.text,
+                        cityController.text,
+                        stateController.text);
+
+                    print(infoForPayment.name);
+                    print(infoForPayment.shoeName);
+                    print(infoForPayment.description);
+                    print(infoForPayment.phoneNumber);
+                    print(infoForPayment.addressLine);
+                    print(infoForPayment.postalCode);
+                    print(infoForPayment.city);
+                    print(infoForPayment.state);
+
+                    Navigator.of(context)
+                        .pushNamed('/Payment', arguments: infoForPayment);
                   }
                 },
                 child: const Text('Submit'),
@@ -133,4 +175,20 @@ class _AddressContentState extends State<AddressContent> {
       ],
     );
   }
+}
+
+class AddressInfo {
+  //we need name, shoeName, description, phoneNumber, address line, postal code,
+  //city, state, 
+  final String name;
+  final String shoeName;
+  final String description;
+  final String phoneNumber;
+  final String addressLine;
+  final String postalCode;
+  final String city;
+  final String state;
+  //add boolean for shipping or not shipping
+  AddressInfo(this.name, this.shoeName, this.description, this.phoneNumber,
+      this.addressLine, this.postalCode, this.city, this.state);
 }
