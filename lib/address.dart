@@ -76,9 +76,10 @@ class _AddressContentState extends State<AddressContent> {
   static TextEditingController cityController = TextEditingController();
   static TextEditingController stateController = TextEditingController();
 
-  bool empty = false;
+  bool shipped = false;
+  // bool shipped = false;
   //isShipped _bool = isShipped.Yes;
-  isShipped ? _bool = isShipped.Yes;
+  isShipped? _bool = isShipped.Yes;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -128,24 +129,25 @@ class _AddressContentState extends State<AddressContent> {
             children: <Widget>[
               ListTile(
                 title: const Text('Shipping'),
-                leading: Radio<isShipped>(
-                  value: isShipped.Yes,
-                  groupValue: _bool,
-                  onChanged: (isShipped? value) {
+                leading: Radio<bool>(
+                  value: true,
+                  groupValue: shipped,
+                  onChanged: (value) {
                     setState(() {
-                      _bool = value;
+                      shipped = true;
                     });
                   },
                 ),
               ),
               ListTile(
                 title: const Text('Drop Off/Pick Up'),
-                leading: Radio<isShipped>(
-                  value: isShipped.No,
-                  groupValue: _bool,
-                  onChanged: (isShipped? value) {
+                leading: Radio<bool>(
+                  value: false,
+                  groupValue: shipped,
+                  onChanged: (value) {
                     setState(() {
-                      _bool = value;
+                     shipped = false;
+                      print(_bool);
                     });
                   },
                 ),
@@ -182,17 +184,18 @@ class _AddressContentState extends State<AddressContent> {
                             stateController.text,
                           );
 
-                          print(infoForPayment.name);
+                          /*print(infoForPayment.name);
                           print(infoForPayment.shoeName);
                           print(infoForPayment.description);
                           print(infoForPayment.phoneNumber);
                           print(infoForPayment.addressLine);
                           print(infoForPayment.postalCode);
                           print(infoForPayment.city);
-                          print(infoForPayment.state);
+                          print(infoForPayment.state);*/
 
-                          Navigator.of(context)
-                              .pushNamed('/Payment', arguments: infoForPayment);
+                          /* Navigator.of(context)
+                              .pushNamed('/Payment', arguments: infoForPayment);*/
+                          print(_bool);
                         }
                       },
                       child: const Text('Submit'),
