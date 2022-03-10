@@ -66,6 +66,8 @@ class AddressContent extends StatefulWidget {
   _AddressContentState createState() => _AddressContentState();
 }
 
+enum isShipped {Yes, No}
+
 class _AddressContentState extends State<AddressContent> {
   _AddressContentState();
 
@@ -74,10 +76,9 @@ class _AddressContentState extends State<AddressContent> {
   static TextEditingController postalCodeController = TextEditingController();
   static TextEditingController cityController = TextEditingController();
   static TextEditingController stateController = TextEditingController();
-  int group = 1;
 
   bool empty = false;
-
+  isShipped _bool = isShipped.Yes;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -125,30 +126,36 @@ class _AddressContentState extends State<AddressContent> {
         ),
 
 
-        Radio(
-          value: Text("Shipping"),
-          groupValue: group,
-          onChanged: (T) {
-            print(T);
 
-            setState(() {
-              group = T;
-            });
-          },
-        ),
+        Column(  
+      children: <Widget>[  
+        ListTile(  
+          title: const Text('www.javatpoint.com'),  
+          leading: Radio(  
+            value: isShipped.Yes,
+            groupValue: _bool,
+            onChanged: (isShipped value) {  
+              setState(() {
+                _bool = value;  
+              });  
+            },  
+          ),  
+        ),  
+        ListTile(  
+          title: const Text('www.w3school.com'),  
+          leading: Radio(  
+            value: isShipped.No,  
+            groupValue: _site,  
+            onChanged: (BestTutorSite value) {  
+              setState(() {  
+                _site = value;  
+              });  
+            },  
+          ),  
+        ),  
 
 
-        Radio(
-          value: Text("Drop off/Pick up"),
-          groupValue: group,
-          onChanged: (T) {
-            print(T);
 
-            setState(() {
-              group = T;
-            });
-          },
-        )
         
         Center(
           child: Column(
