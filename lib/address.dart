@@ -142,6 +142,7 @@ class _AddressContentState extends State<AddressContent> {
                       stateController.text.length != 2) {
                     print("fuck you");
                   } else {
+                    //add the boolean for shipping/not shipping into this constructor
                     AddressInfo infoForPayment = new AddressInfo(
                         name,
                         shoeName,
@@ -186,7 +187,7 @@ class AddressInfo {
   final String postalCode;
   final String city;
   final String state;
-
+  //add boolean for shipping or not shipping
   AddressInfo(this.name, this.shoeName, this.description, this.phoneNumber,
       this.addressLine, this.postalCode, this.city, this.state);
 }

@@ -25,9 +25,10 @@ class Payment extends StatefulWidget {
   final String postalCode;
   final String city;
   final String state;
-
+  //add final boolean is shipped
   const Payment(this.name, this.shoeName, this.description, this.phoneNumber,
-      this.addressLine, this.postalCode, this.city, this.state);
+      this.addressLine, this.postalCode, this.city, this.state //add in constructor
+      );
 
   @override
   _PaymentState createState() => _PaymentState();
@@ -118,10 +119,17 @@ class _PaymentState extends State<Payment> {
         isLoadingNextScreen = true;
         paymentIntentData['clientSecret'] = null;
 
-        Navigator.of(context).pushNamed('/PaymentComplete');
+        Navigator.of(context).pushNamed('/PaymentComplete'
+        
+        //, arguments: create a class that just has the shipping as an instance variable
+        );
+        
       });
     } catch (e) {
       print(e);
     }
   }
 }
+
+
+
