@@ -25,6 +25,7 @@ class Payment extends StatefulWidget {
   final String postalCode;
   final String city;
   final String state;
+  final bool shipped;
   //add final boolean is shipped
   const Payment(
       this.name,
@@ -34,7 +35,8 @@ class Payment extends StatefulWidget {
       this.addressLine,
       this.postalCode,
       this.city,
-      this.state //add in constructor
+      this.state,
+      this.shipped //add in constructor
       );
 
   @override
@@ -48,7 +50,7 @@ class _PaymentState extends State<Payment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Payment Processing"),
+        title: Text(widget.shipped.toString()),
       ),
       body: (isLoadingNextScreen)
           ? Center(child: CircularProgressIndicator())
@@ -92,7 +94,8 @@ class _PaymentState extends State<Payment> {
       "addressLine": widget.addressLine,
       "postalCode": widget.postalCode,
       "city": widget.city,
-      "state": widget.state
+      "state": widget.state,
+      "isShipped": widget.shipped.toString()
     };
 
     final response = await post(
@@ -125,8 +128,9 @@ class _PaymentState extends State<Payment> {
       setState(() {
         isLoadingNextScreen = true;
         paymentIntentData['clientSecret'] = null;
-
-        Navigator.of(context).pushNamed('/PaymentComplete'
+        PaymentInfo information = new PaymentInfo(widget.shipped);
+        Navigator.of(context).pushNamed('/PaymentComplete',
+        arguments: information
 
             //, arguments: create a class that just has the shipping as an instance variable
             );
@@ -135,4 +139,9 @@ class _PaymentState extends State<Payment> {
       print(e);
     }
   }
+}
+
+class PaymentInfo {
+  final bool isShipped;
+  PaymentInfo(this.isShipped);
 }

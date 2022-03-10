@@ -65,8 +65,6 @@ class AddressContent extends StatefulWidget {
   _AddressContentState createState() => _AddressContentState();
 }
 
-enum isShipped { Yes, No }
-
 class _AddressContentState extends State<AddressContent> {
   _AddressContentState();
 
@@ -79,7 +77,6 @@ class _AddressContentState extends State<AddressContent> {
   bool shipped = false;
   // bool shipped = false;
   //isShipped _bool = isShipped.Yes;
-  isShipped? _bool = isShipped.Yes;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -146,8 +143,8 @@ class _AddressContentState extends State<AddressContent> {
                   groupValue: shipped,
                   onChanged: (value) {
                     setState(() {
-                     shipped = false;
-                      print(_bool);
+                      shipped = false;
+                      //print(_bool);
                     });
                   },
                 ),
@@ -174,15 +171,15 @@ class _AddressContentState extends State<AddressContent> {
                         } else {
                           //add the boolean for shipping/not shipping into this constructor
                           AddressInfo infoForPayment = new AddressInfo(
-                            name,
-                            shoeName,
-                            description,
-                            phoneNumber,
-                            addressLine1Controller.text,
-                            postalCodeController.text,
-                            cityController.text,
-                            stateController.text,
-                          );
+                              name,
+                              shoeName,
+                              description,
+                              phoneNumber,
+                              addressLine1Controller.text,
+                              postalCodeController.text,
+                              cityController.text,
+                              stateController.text,
+                              shipped);
 
                           /*print(infoForPayment.name);
                           print(infoForPayment.shoeName);
@@ -193,9 +190,8 @@ class _AddressContentState extends State<AddressContent> {
                           print(infoForPayment.city);
                           print(infoForPayment.state);*/
 
-                          /* Navigator.of(context)
-                              .pushNamed('/Payment', arguments: infoForPayment);*/
-                          print(_bool);
+                          Navigator.of(context)
+                              .pushNamed('/Payment', arguments: infoForPayment);
                         }
                       },
                       child: const Text('Submit'),
@@ -220,7 +216,8 @@ class AddressInfo {
   final String postalCode;
   final String city;
   final String state;
+  final bool shipped;
   //add boolean for shipping or not shipping
   AddressInfo(this.name, this.shoeName, this.description, this.phoneNumber,
-      this.addressLine, this.postalCode, this.city, this.state);
+      this.addressLine, this.postalCode, this.city, this.state, this.shipped);
 }
