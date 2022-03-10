@@ -8,6 +8,7 @@ import 'payment.dart';
 import 'payment_complete.dart';
 
 class PaymentComplete extends StatelessWidget {
+  //add isShipped as part of the constructor 
   const PaymentComplete({Key? key}) : super(key: key);
 
   static const String title = 'Payment Complete';
@@ -15,20 +16,25 @@ class PaymentComplete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(title), automaticallyImplyLeading: false,),
-      body: const PaymentCompleteContent(),
+      appBar: AppBar(
+        title: const Text(title),
+        automaticallyImplyLeading: false,
+      ),
+      body: const PaymentCompleteContent(/**add a isShipped paramter to this cojnstrucotr */),
     );
   }
 }
 
 class PaymentCompleteContent extends StatefulWidget {
   const PaymentCompleteContent({Key? key}) : super(key: key);
-
+  //add isSHIpped param
   @override
   State<PaymentCompleteContent> createState() => _PaymentCompleteContentState();
 }
 
 class _PaymentCompleteContentState extends State<PaymentCompleteContent> {
+  //how to access in the state class: 
+  //once inside widget build metod, you can just do widget.isShipped 
   @override
   Widget build(BuildContext context) {
     final ButtonStyle style =
@@ -38,16 +44,21 @@ class _PaymentCompleteContentState extends State<PaymentCompleteContent> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Center(child: Text('Payment complete! Thanks for using Nsta Fresh.', style: TextStyle(fontSize: 20),textAlign: TextAlign.center,)),
+          Center(
+              child: Text(
+            'Payment complete! Thanks for using Nsta Fresh.',
+            style: TextStyle(fontSize: 20),
+            textAlign: TextAlign.center,
+          )),
           const SizedBox(height: 30),
           ElevatedButton(
-        style: style,
-        onPressed: () {
-          Navigator.of(context).pushNamed('/Home');
-        },
-        child: const Text('Home'),
-      ),
-      ],
+            style: style,
+            onPressed: () {
+              Navigator.of(context).pushNamed('/');
+            },
+            child: const Text('Home'),
+          ),
+        ],
       ),
     );
   }
