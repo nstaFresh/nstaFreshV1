@@ -74,6 +74,7 @@ class _AddressContentState extends State<AddressContent> {
   static TextEditingController postalCodeController = TextEditingController();
   static TextEditingController cityController = TextEditingController();
   static TextEditingController stateController = TextEditingController();
+  int group = 1;
 
   bool empty = false;
 
@@ -122,6 +123,32 @@ class _AddressContentState extends State<AddressContent> {
             ),
           ),
         ),
+
+
+        Radio(
+          value: Text("Shipping"),
+          groupValue: group,
+          onChanged: (T) {
+            print(T);
+
+            setState(() {
+              group = T;
+            });
+          },
+        ),
+
+
+        Radio(
+          value: Text("Drop off/Pick up"),
+          groupValue: group,
+          onChanged: (T) {
+            print(T);
+
+            setState(() {
+              group = T;
+            });
+          },
+        )
         
         Center(
           child: Column(
@@ -152,7 +179,8 @@ class _AddressContentState extends State<AddressContent> {
                         addressLine1Controller.text,
                         postalCodeController.text,
                         cityController.text,
-                        stateController.text);
+                        stateController.text,
+                        );
 
                     print(infoForPayment.name);
                     print(infoForPayment.shoeName);
