@@ -9,6 +9,7 @@ import 'payment_complete.dart';
 
 //we need name, shoe name, description
 class Address extends StatelessWidget {
+  
   final String name;
   final String shoeName;
   final String description;
