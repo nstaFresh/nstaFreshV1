@@ -65,8 +65,6 @@ class AddressContent extends StatefulWidget {
   _AddressContentState createState() => _AddressContentState();
 }
 
-enum isShipped { Yes, No }
-
 class _AddressContentState extends State<AddressContent> {
   _AddressContentState();
 
@@ -76,9 +74,9 @@ class _AddressContentState extends State<AddressContent> {
   static TextEditingController cityController = TextEditingController();
   static TextEditingController stateController = TextEditingController();
 
-  bool empty = false;
+  bool shipped = false;
+  // bool shipped = false;
   //isShipped _bool = isShipped.Yes;
-  isShipped ? _bool = isShipped.Yes;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -128,24 +126,25 @@ class _AddressContentState extends State<AddressContent> {
             children: <Widget>[
               ListTile(
                 title: const Text('Shipping'),
-                leading: Radio<isShipped>(
-                  value: isShipped.Yes,
-                  groupValue: _bool,
-                  onChanged: (isShipped? value) {
+                leading: Radio<bool>(
+                  value: true,
+                  groupValue: shipped,
+                  onChanged: (value) {
                     setState(() {
-                      _bool = value;
+                      shipped = true;
                     });
                   },
                 ),
               ),
               ListTile(
                 title: const Text('Drop Off/Pick Up'),
-                leading: Radio<isShipped>(
-                  value: isShipped.No,
-                  groupValue: _bool,
-                  onChanged: (isShipped? value) {
+                leading: Radio<bool>(
+                  value: false,
+                  groupValue: shipped,
+                  onChanged: (value) {
                     setState(() {
-                      _bool = value;
+                      shipped = false;
+                      //print(_bool);
                     });
                   },
                 ),
@@ -172,24 +171,24 @@ class _AddressContentState extends State<AddressContent> {
                         } else {
                           //add the boolean for shipping/not shipping into this constructor
                           AddressInfo infoForPayment = new AddressInfo(
-                            name,
-                            shoeName,
-                            description,
-                            phoneNumber,
-                            addressLine1Controller.text,
-                            postalCodeController.text,
-                            cityController.text,
-                            stateController.text,
-                          );
+                              name,
+                              shoeName,
+                              description,
+                              phoneNumber,
+                              addressLine1Controller.text,
+                              postalCodeController.text,
+                              cityController.text,
+                              stateController.text,
+                              shipped);
 
-                          print(infoForPayment.name);
+                          /*print(infoForPayment.name);
                           print(infoForPayment.shoeName);
                           print(infoForPayment.description);
                           print(infoForPayment.phoneNumber);
                           print(infoForPayment.addressLine);
                           print(infoForPayment.postalCode);
                           print(infoForPayment.city);
-                          print(infoForPayment.state);
+                          print(infoForPayment.state);*/
 
                           Navigator.of(context)
                               .pushNamed('/Payment', arguments: infoForPayment);
@@ -217,7 +216,8 @@ class AddressInfo {
   final String postalCode;
   final String city;
   final String state;
+  final bool shipped;
   //add boolean for shipping or not shipping
   AddressInfo(this.name, this.shoeName, this.description, this.phoneNumber,
-      this.addressLine, this.postalCode, this.city, this.state);
+      this.addressLine, this.postalCode, this.city, this.state, this.shipped);
 }

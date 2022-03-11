@@ -8,19 +8,21 @@ import 'payment.dart';
 import 'payment_complete.dart';
 
 class PaymentComplete extends StatelessWidget {
-  //add isShipped as part of the constructor 
-  const PaymentComplete({Key? key}) : super(key: key);
+  final bool shipped;
+  //add isShipped as part of the constructor
+   PaymentComplete(this.shipped);
 
-  static const String title = 'Payment Complete';
+  //String title = shipped.toString();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(title),
+        title:  Text(shipped.toString()),
         automaticallyImplyLeading: false,
       ),
-      body: const PaymentCompleteContent(/**add a isShipped paramter to this cojnstrucotr */),
+      body: const PaymentCompleteContent(
+          /**add a isShipped paramter to this cojnstrucotr */),
     );
   }
 }
@@ -33,8 +35,8 @@ class PaymentCompleteContent extends StatefulWidget {
 }
 
 class _PaymentCompleteContentState extends State<PaymentCompleteContent> {
-  //how to access in the state class: 
-  //once inside widget build metod, you can just do widget.isShipped 
+  //how to access in the state class:
+  //once inside widget build metod, you can just do widget.isShipped
   @override
   Widget build(BuildContext context) {
     final ButtonStyle style =
