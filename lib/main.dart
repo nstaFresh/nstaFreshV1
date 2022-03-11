@@ -7,11 +7,13 @@ import 'book_cleaning.dart';
 import 'address.dart';
 import 'payment.dart';
 import 'payment_complete.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
+  await dotenv.load();
   WidgetsFlutterBinding.ensureInitialized();
-  Stripe.merchantIdentifier = 'Ibrahim Shah';
-  Stripe.publishableKey = 'pk_test_pPq9ppt7qkZ1cNMBebnGtOlS';
+  Stripe.merchantIdentifier = dotenv.env['MERCHANT_IDENTIFIER']!;
+  Stripe.publishableKey = dotenv.env['PUBLISHABLE_KEY']!;
   await Stripe.instance.applySettings();
 
   runApp(const MyApp());
@@ -31,4 +33,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

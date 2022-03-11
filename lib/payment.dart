@@ -12,6 +12,7 @@ import 'book_cleaning.dart';
 import 'address.dart';
 import 'payment.dart';
 import 'payment_complete.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Payment extends StatefulWidget {
   //we need name, shoeName, description, phoneNumber, address line, postal code,
@@ -79,7 +80,7 @@ class _PaymentState extends State<Payment> {
 
   Future<void> makePayment() async {
     final url = Uri.parse(
-        "https://nstafresh.herokuapp.com/create-payment-intent");
+        dotenv.env['API_URL']!);
 
     /*
                   (widget.name);
