@@ -42,6 +42,7 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
   static TextEditingController shoeNameController = TextEditingController();
   static TextEditingController descriptionController = TextEditingController();
   static TextEditingController phoneNumberController = TextEditingController();
+  static TextEditingController emailController = TextEditingController();
 
   bool empty = false;
 
@@ -90,6 +91,16 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
             ),
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+          child: TextFormField(
+            controller: emailController,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Email',
+            ),
+          ),
+        ),
         Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -101,7 +112,8 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
                       shoeNameController.text.isEmpty ||
                       descriptionController.text.isEmpty ||
                       phoneNumberController.text.isEmpty ||
-                      phoneNumberController.text.length != 10) {
+                      phoneNumberController.text.length != 10 ||
+                      emailController.text.isEmpty) {
                     print("fuck you");
                   } else {
                     Navigator.of(context).pushNamed('/Address',
@@ -109,7 +121,8 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
                             nameController.text,
                             shoeNameController.text,
                             descriptionController.text,
-                            phoneNumberController.text));
+                            phoneNumberController.text,
+                            emailController.text));
                   }
                 },
                 child: const Text('Next'),
@@ -127,7 +140,8 @@ class BookCleaningInfo {
   final String shoeName;
   final String description;
   final String phoneNumber;
+  final String email;
 
   const BookCleaningInfo(
-      this.name, this.shoeName, this.description, this.phoneNumber);
+      this.name, this.shoeName, this.description, this.phoneNumber, this.email);
 }
