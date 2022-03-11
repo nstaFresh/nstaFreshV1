@@ -21,7 +21,7 @@ class PaymentComplete extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(shipped.toString()),
+        title: Text("Payment Complete"),
         automaticallyImplyLeading: false,
       ),
       body: PaymentCompleteContent(shipped, email, pickUpDate, pickUpTime

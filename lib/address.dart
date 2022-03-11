@@ -47,7 +47,7 @@ class Address extends StatelessWidget {
       appBar: AppBar(
            
 
-        title: Text(name),
+        title: Text(title),
         leading: BackButton(
           onPressed: () => Navigator.pop(context),
         ),
@@ -176,21 +176,27 @@ class _AddressContentState extends State<AddressContent> {
                           Column(
                             mainAxisSize: MainAxisSize.min,
                               children: [
-                                 TextFormField(
-                                    controller: pickUpDateController,
-                                    decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      labelText: 'Pick up date',
-                                    ),
-                                  ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+            child: TextFormField(
+              controller: pickUpDateController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Pick up date',
+              ),
+            ),
+          ),
                                 
-                                TextFormField(
-                                    controller: pickUpTimeController,
-                                    decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      labelText: 'Pick up time',
-                                    ),
-                                  ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+            child: TextFormField(
+              controller: pickUpTimeController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Pick up time',
+              ),
+            ),
+          ),
                                 
                               ],
                             ): null),

@@ -56,7 +56,7 @@ class _PaymentState extends State<Payment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.shipped.toString()),
+        title: Text("Payment"),
       ),
       body: (isLoadingNextScreen)
           ? Center(child: CircularProgressIndicator())
