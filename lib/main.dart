@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'main.dart';
 import 'route_generator.dart';
@@ -9,9 +10,10 @@ import 'payment.dart';
 import 'payment_complete.dart';
 
 void main() async {
+  await dotenv.load();
   WidgetsFlutterBinding.ensureInitialized();
-  Stripe.merchantIdentifier = 'Ibrahim Shah';
-  Stripe.publishableKey = 'pk_test_pPq9ppt7qkZ1cNMBebnGtOlS';
+  Stripe.merchantIdentifier = dotenv.env['MERCHANT_IDENTIFIER']!;
+  Stripe.publishableKey = dotenv.env['PUBLISHABLE_KEY']!;
   await Stripe.instance.applySettings();
 
   runApp(const MyApp());
@@ -31,4 +33,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

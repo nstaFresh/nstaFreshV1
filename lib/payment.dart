@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -42,8 +43,7 @@ class Payment extends StatefulWidget {
       this.state,
       this.shipped, //add in constructor
       this.pickUpDate,
-      this.pickUpTime
-      );
+      this.pickUpTime);
 
   @override
   _PaymentState createState() => _PaymentState();
@@ -78,8 +78,7 @@ class _PaymentState extends State<Payment> {
   }
 
   Future<void> makePayment() async {
-    final url = Uri.parse(
-        "https://nstafresh.herokuapp.com/create-payment-intent");
+    final url = Uri.parse(dotenv.env["API_URL"]!);
 
     /*
                   (widget.name);
@@ -137,9 +136,14 @@ class _PaymentState extends State<Payment> {
       setState(() {
         isLoadingNextScreen = true;
         paymentIntentData['clientSecret'] = null;
-        PaymentInfo information = new PaymentInfo(widget.shipped, widget.email, widget.pickUpDate, widget.pickUpTime,);
+        PaymentInfo information = new PaymentInfo(
+          widget.shipped,
+          widget.email,
+          widget.pickUpDate,
+          widget.pickUpTime,
+        );
         Navigator.of(context).pushNamed('/PaymentComplete',
-        arguments: information
+            arguments: information
 
             //, arguments: create a class that just has the shipping as an instance variable
             );
