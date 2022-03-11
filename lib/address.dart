@@ -82,6 +82,27 @@ class AddressContent extends StatefulWidget {
 class _AddressContentState extends State<AddressContent> {
   _AddressContentState();
 
+Widget _buildPopupDialog(BuildContext context) {
+    return new AlertDialog(
+      title: const Text('Error'),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Please Complete All Dialogues"),
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
+
   late AddressInfo infoForPayment;
   static TextEditingController addressLine1Controller = TextEditingController();
   static TextEditingController postalCodeController = TextEditingController();
@@ -228,6 +249,11 @@ class _AddressContentState extends State<AddressContent> {
                                   (pickUpDateController.text.isEmpty ||
                                       pickUpTimeController.text.isEmpty))) {
                             print("fuck you");
+                            showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          _buildPopupDialog(context),
+                    );
                           } else {
                             //add the boolean for shipping/not shipping into this constructor
                             AddressInfo infoForPayment = new AddressInfo(

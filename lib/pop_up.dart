@@ -10,12 +10,12 @@ import 'payment_complete.dart';
 
 Widget _buildPopupDialog(BuildContext context) {
   return new AlertDialog(
-    title: const Text('Popup example'),
+    title: const Text('Error'),
     content: new Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("Hello"),
+        Text("Please insert all text fields"),
       ],
     ),
     actions: <Widget>[

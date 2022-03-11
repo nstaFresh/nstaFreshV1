@@ -41,12 +41,12 @@ class BookCleaningContent extends StatefulWidget {
 class _BookCleaningContentState extends State<BookCleaningContent> {
   Widget _buildPopupDialog(BuildContext context) {
     return new AlertDialog(
-      title: const Text('Popup example'),
+      title: const Text('Error'),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Hello"),
+          Text("Please Complete All Dialogues"),
         ],
       ),
       actions: <Widget>[
@@ -144,6 +144,7 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
                           _buildPopupDialog(context),
                     );
                   } else {
+                    
                     Navigator.of(context).pushNamed('/Address',
                         arguments: BookCleaningInfo(
                             nameController.text,
