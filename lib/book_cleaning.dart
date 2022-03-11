@@ -127,7 +127,6 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              //const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
                   if (nameController.text.isEmpty ||
@@ -136,7 +135,6 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
                       phoneNumberController.text.isEmpty ||
                       phoneNumberController.text.length != 10 ||
                       emailController.text.isEmpty) {
-                    print("fuck you");
 
                     showDialog(
                       context: context,

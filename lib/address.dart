@@ -7,7 +7,6 @@ import 'address.dart';
 import 'payment.dart';
 import 'payment_complete.dart';
 
-//we need name, shoe name, description
 class Address extends StatelessWidget {
   final String name;
   final String shoeName;
@@ -112,8 +111,7 @@ Widget _buildPopupDialog(BuildContext context) {
   static TextEditingController pickUpTimeController = TextEditingController();
 
   bool shipped = false;
-  // bool shipped = false;
-  //isShipped _bool = isShipped.Yes;
+ 
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -185,7 +183,6 @@ Widget _buildPopupDialog(BuildContext context) {
                       onChanged: (value) {
                         setState(() {
                           shipped = false;
-                          //print(_bool);
                         });
                       },
                     ),
@@ -225,7 +222,6 @@ Widget _buildPopupDialog(BuildContext context) {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      //const SizedBox(height: 30),
                       ElevatedButton(
                         onPressed: () {
                           String name = widget.name;
@@ -248,14 +244,12 @@ Widget _buildPopupDialog(BuildContext context) {
                               (shipped == false &&
                                   (pickUpDateController.text.isEmpty ||
                                       pickUpTimeController.text.isEmpty))) {
-                            print("fuck you");
                             showDialog(
                       context: context,
                       builder: (BuildContext context) =>
                           _buildPopupDialog(context),
                     );
                           } else {
-                            //add the boolean for shipping/not shipping into this constructor
                             AddressInfo infoForPayment = new AddressInfo(
                                 name,
                                 shoeName,
@@ -270,14 +264,7 @@ Widget _buildPopupDialog(BuildContext context) {
                                 pickUpDateController.text,
                                 pickUpTimeController.text);
 
-                            /*print(infoForPayment.name);
-                              print(infoForPayment.shoeName);
-                              print(infoForPayment.description);
-                              print(infoForPayment.phoneNumber);
-                              print(infoForPayment.addressLine);
-                              print(infoForPayment.postalCode);
-                              print(infoForPayment.city);
-                              print(infoForPayment.state);*/
+                          
 
                             Navigator.of(context).pushNamed('/Payment',
                                 arguments: infoForPayment);
@@ -296,8 +283,7 @@ Widget _buildPopupDialog(BuildContext context) {
 }
 
 class AddressInfo {
-  //we need name, shoeName, description, phoneNumber, address line, postal code,
-  //city, state,
+  
   final String name;
   final String shoeName;
   final String description;
@@ -311,7 +297,6 @@ class AddressInfo {
   final String pickUpDate;
   final String pickUpTime;
 
-  //add boolean for shipping or not shipping
   AddressInfo(
       this.name,
       this.shoeName,

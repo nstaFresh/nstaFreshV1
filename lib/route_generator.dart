@@ -22,8 +22,7 @@ class RouteGenerator {
               args.name, args.shoeName, args.description, args.phoneNumber, args.email);
         });
       case '/Payment':
-        //we need name, shoeName, description, phoneNumber, address line, postal code,
-        //city, state,
+        
 
         return MaterialPageRoute(builder: (BuildContext context) {
           final args = settings.arguments as AddressInfo;
@@ -40,7 +39,6 @@ class RouteGenerator {
               args.shipped,
               args.pickUpDate,
               args.pickUpTime
-              //add args.isShipped
               );
         });
       case '/PaymentComplete':
