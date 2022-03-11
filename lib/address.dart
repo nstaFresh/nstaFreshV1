@@ -13,8 +13,9 @@ class Address extends StatelessWidget {
   final String shoeName;
   final String description;
   final String phoneNumber;
+  final String email;
 
-  const Address(this.name, this.shoeName, this.description, this.phoneNumber);
+  const Address(this.name, this.shoeName, this.description, this.phoneNumber, this.email);
 
   static const String title = 'Address Info';
 
@@ -34,6 +35,10 @@ class Address extends StatelessWidget {
     return this.phoneNumber;
   }
 
+  String getEmail() {
+    return this.email;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +50,7 @@ class Address extends StatelessWidget {
         ),
       ),
       body: AddressContent(
-          getName(), getShoeName(), getDescription(), getPhoneNumber()),
+          getName(), getShoeName(), getDescription(), getPhoneNumber(), getEmail()),
     );
   }
 }
@@ -55,8 +60,9 @@ class AddressContent extends StatefulWidget {
   final String shoeName;
   final String description;
   final String phoneNumber;
+  final String email;
   const AddressContent(
-      this.name, this.shoeName, this.description, this.phoneNumber);
+      this.name, this.shoeName, this.description, this.phoneNumber, this.email);
 
   static final ButtonStyle style =
       ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
@@ -160,6 +166,7 @@ class _AddressContentState extends State<AddressContent> {
                         String shoeName = widget.shoeName;
                         String description = widget.description;
                         String phoneNumber = widget.phoneNumber;
+                        String email = widget.email;
 
                         if (addressLine1Controller.text.isEmpty ||
                             postalCodeController.text.isEmpty ||
@@ -175,6 +182,7 @@ class _AddressContentState extends State<AddressContent> {
                               shoeName,
                               description,
                               phoneNumber,
+                              email,
                               addressLine1Controller.text,
                               postalCodeController.text,
                               cityController.text,
@@ -212,12 +220,13 @@ class AddressInfo {
   final String shoeName;
   final String description;
   final String phoneNumber;
+  final String email;
   final String addressLine;
   final String postalCode;
   final String city;
   final String state;
   final bool shipped;
   //add boolean for shipping or not shipping
-  AddressInfo(this.name, this.shoeName, this.description, this.phoneNumber,
+  AddressInfo(this.name, this.shoeName, this.description, this.phoneNumber, this.email,
       this.addressLine, this.postalCode, this.city, this.state, this.shipped);
 }

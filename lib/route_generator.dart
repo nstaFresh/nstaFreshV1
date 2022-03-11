@@ -19,7 +19,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (BuildContext context) {
           final args = settings.arguments as BookCleaningInfo;
           return Address(
-              args.name, args.shoeName, args.description, args.phoneNumber);
+              args.name, args.shoeName, args.description, args.phoneNumber, args.email);
         });
       case '/Payment':
         //we need name, shoeName, description, phoneNumber, address line, postal code,
@@ -32,6 +32,7 @@ class RouteGenerator {
               args.shoeName,
               args.description,
               args.phoneNumber,
+              args.email,
               args.addressLine,
               args.postalCode,
               args.city,
