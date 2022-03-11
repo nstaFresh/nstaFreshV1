@@ -73,7 +73,7 @@ class _PaymentState extends State<Payment> {
 
   Future<void> makePayment() async {
     final url = Uri.parse(
-        "http://10.0.2.2:3000/create-payment-intent");
+        "https://nstafresh.herokuapp.com/create-payment-intent");
 
     /*
                   (widget.name);
