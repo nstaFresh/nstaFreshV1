@@ -37,14 +37,16 @@ class RouteGenerator {
               args.postalCode,
               args.city,
               args.state,
-              args.shipped
+              args.shipped,
+              args.pickUpDate,
+              args.pickUpTime
               //add args.isShipped
               );
         });
       case '/PaymentComplete':
         return MaterialPageRoute(builder: (BuildContext context) {
           final args = settings.arguments as PaymentInfo;
-          return PaymentComplete(args.isShipped);
+          return PaymentComplete(args.shipped, args.email, args.pickUpDate, args.pickUpTime);
         });
       default:
         return errorRoute();

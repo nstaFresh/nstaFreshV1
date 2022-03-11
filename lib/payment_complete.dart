@@ -9,8 +9,11 @@ import 'payment_complete.dart';
 
 class PaymentComplete extends StatelessWidget {
   final bool shipped;
+  final String email;
+  final String pickUpDate;
+  final String pickUpTime;
   //add isShipped as part of the constructor
-   PaymentComplete(this.shipped);
+  PaymentComplete(this.shipped, this.email, this.pickUpDate, this.pickUpTime);
 
   //String title = shipped.toString();
 
@@ -18,17 +21,22 @@ class PaymentComplete extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(shipped.toString()),
+        title: Text(shipped.toString()),
         automaticallyImplyLeading: false,
       ),
-      body: const PaymentCompleteContent(
+      body: PaymentCompleteContent(shipped, email, pickUpDate, pickUpTime
           /**add a isShipped paramter to this cojnstrucotr */),
     );
   }
 }
 
 class PaymentCompleteContent extends StatefulWidget {
-  const PaymentCompleteContent({Key? key}) : super(key: key);
+  final bool shipped;
+  final String email;
+  final String pickUpDate;
+  final String pickUpTime;
+  const PaymentCompleteContent(
+      this.shipped, this.email, this.pickUpDate, this.pickUpTime);
   //add isSHIpped param
   @override
   State<PaymentCompleteContent> createState() => _PaymentCompleteContentState();
@@ -47,11 +55,17 @@ class _PaymentCompleteContentState extends State<PaymentCompleteContent> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Center(
-              child: Text(
-            'Payment complete! Thanks for using Nsta Fresh.',
-            style: TextStyle(fontSize: 20),
-            textAlign: TextAlign.center,
-          )),
+              child: (widget.shipped)
+                  ? Text(
+                      'Payment complete! Thanks for using Nsta Fresh. A shipping label will be sent to ${widget.email}',
+                      style: TextStyle(fontSize: 20),
+                      textAlign: TextAlign.center,
+                    )
+                  : Text(
+                      'Payment complete! Thanks for using Nsta Fresh. We will pick up the shoes on ${widget.pickUpDate} at ${widget.pickUpTime}',
+                      style: TextStyle(fontSize: 20),
+                      textAlign: TextAlign.center,
+                    )),
           const SizedBox(height: 30),
           ElevatedButton(
             style: style,

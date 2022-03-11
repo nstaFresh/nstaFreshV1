@@ -27,6 +27,8 @@ class Payment extends StatefulWidget {
   final String city;
   final String state;
   final bool shipped;
+  final String pickUpDate;
+  final String pickUpTime;
   //add final boolean is shipped
   const Payment(
       this.name,
@@ -38,7 +40,9 @@ class Payment extends StatefulWidget {
       this.postalCode,
       this.city,
       this.state,
-      this.shipped //add in constructor
+      this.shipped, //add in constructor
+      this.pickUpDate,
+      this.pickUpTime
       );
 
   @override
@@ -98,7 +102,9 @@ class _PaymentState extends State<Payment> {
       "postalCode": widget.postalCode,
       "city": widget.city,
       "state": widget.state,
-      "isShipped": widget.shipped.toString()
+      "isShipped": widget.shipped.toString(),
+      "pickUpDate": widget.pickUpDate,
+      "pickUpTime": widget.pickUpTime
     };
 
     final response = await post(
@@ -131,7 +137,7 @@ class _PaymentState extends State<Payment> {
       setState(() {
         isLoadingNextScreen = true;
         paymentIntentData['clientSecret'] = null;
-        PaymentInfo information = new PaymentInfo(widget.shipped);
+        PaymentInfo information = new PaymentInfo(widget.shipped, widget.email, widget.pickUpDate, widget.pickUpTime,);
         Navigator.of(context).pushNamed('/PaymentComplete',
         arguments: information
 
@@ -145,6 +151,9 @@ class _PaymentState extends State<Payment> {
 }
 
 class PaymentInfo {
-  final bool isShipped;
-  PaymentInfo(this.isShipped);
+  final bool shipped;
+  final String email;
+  final String pickUpDate;
+  final String pickUpTime;
+  PaymentInfo(this.shipped, this.email, this.pickUpDate, this.pickUpTime);
 }
