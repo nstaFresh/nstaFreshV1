@@ -21,6 +21,7 @@ class Payment extends StatefulWidget {
   final String shoeName;
   final String description;
   final String phoneNumber;
+  final String email;
   final String addressLine;
   final String postalCode;
   final String city;
@@ -32,6 +33,7 @@ class Payment extends StatefulWidget {
       this.shoeName,
       this.description,
       this.phoneNumber,
+      this.email,
       this.addressLine,
       this.postalCode,
       this.city,
@@ -91,6 +93,7 @@ class _PaymentState extends State<Payment> {
       "shoeName": widget.shoeName,
       "description": widget.description,
       "phoneNumber": widget.phoneNumber,
+      "email": widget.email,
       "addressLine": widget.addressLine,
       "postalCode": widget.postalCode,
       "city": widget.city,
