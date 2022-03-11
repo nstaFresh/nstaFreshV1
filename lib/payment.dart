@@ -73,7 +73,7 @@ class _PaymentState extends State<Payment> {
 
   Future<void> makePayment() async {
     final url = Uri.parse(
-        "https://nstafreshv2.ibrahimshah.repl.co/create-payment-intent");
+        "http://10.0.2.2:3000/create-payment-intent");
 
     /*
                   (widget.name);
