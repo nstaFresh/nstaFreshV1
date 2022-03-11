@@ -41,12 +41,12 @@ class BookCleaningContent extends StatefulWidget {
 class _BookCleaningContentState extends State<BookCleaningContent> {
   Widget _buildPopupDialog(BuildContext context) {
     return new AlertDialog(
-      title: const Text('Popup example'),
+      title: const Text("Can't proceed"),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Hello"),
+          Text("Please complete the incomplete info"),
         ],
       ),
       actions: <Widget>[
