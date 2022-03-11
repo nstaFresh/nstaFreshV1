@@ -6,6 +6,7 @@ import 'book_cleaning.dart';
 import 'address.dart';
 import 'payment.dart';
 import 'payment_complete.dart';
+import 'pop_up.dart';
 
 class BookCleaning extends StatelessWidget {
   const BookCleaning({Key? key}) : super(key: key);
@@ -38,6 +39,27 @@ class BookCleaningContent extends StatefulWidget {
 }
 
 class _BookCleaningContentState extends State<BookCleaningContent> {
+  Widget _buildPopupDialog(BuildContext context) {
+    return new AlertDialog(
+      title: const Text('Popup example'),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Hello"),
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
+
   static TextEditingController nameController = TextEditingController();
   static TextEditingController shoeNameController = TextEditingController();
   static TextEditingController descriptionController = TextEditingController();
@@ -115,6 +137,12 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
                       phoneNumberController.text.length != 10 ||
                       emailController.text.isEmpty) {
                     print("fuck you");
+
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          _buildPopupDialog(context),
+                    );
                   } else {
                     Navigator.of(context).pushNamed('/Address',
                         arguments: BookCleaningInfo(
