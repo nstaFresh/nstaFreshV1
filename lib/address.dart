@@ -43,15 +43,22 @@ class Address extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
+           
+
         title: Text(name),
         leading: BackButton(
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: AddressContent(getName(), getShoeName(), getDescription(),
-          getPhoneNumber(), getEmail()),
+      body: SingleChildScrollView(
+        
+        child: AddressContent(getName()
+        , getShoeName(), getDescription(),
+          getPhoneNumber(), getEmail())
+          )
+
     );
   }
 }
@@ -131,8 +138,8 @@ class _AddressContentState extends State<AddressContent> {
               ),
             ),
           ),
-          SingleChildScrollView(
-            child: Column(
+          
+           Column(
               children: <Widget>[
                 Container(
                   child: ListTile(
@@ -165,33 +172,28 @@ class _AddressContentState extends State<AddressContent> {
                 ),
                 Container(
                     child: (shipped == false)
-                        ? Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 6),
-                                child: TextFormField(
-                                  controller: pickUpDateController,
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Pick up date',
+                        ? 
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                              children: [
+                                 TextFormField(
+                                    controller: pickUpDateController,
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'Pick up date',
+                                    ),
                                   ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 6),
-                                child: TextFormField(
-                                  controller: pickUpTimeController,
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Pick up time',
+                                
+                                TextFormField(
+                                    controller: pickUpTimeController,
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'Pick up time',
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ],
-                          )
-                        : null),
+                                
+                              ],
+                            ): null),
                 Center(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -256,7 +258,7 @@ class _AddressContentState extends State<AddressContent> {
                 ),
               ],
             ),
-          )
+          
         ]);
   }
 }
