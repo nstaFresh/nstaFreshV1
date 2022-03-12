@@ -47,7 +47,6 @@ class Payment extends StatefulWidget {
 }
 
 class _PaymentState extends State<Payment> {
-  
   Widget _buildPopupDialog(String e, BuildContext context) {
     return new AlertDialog(
       title: const Text('Error'),
@@ -55,7 +54,9 @@ class _PaymentState extends State<Payment> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Error: "+e.toString()+" Please alert 104ibrahimshah@gmail.com of the issue"),
+          Text("Error: " +
+              e.toString() +
+              " Please alert 104ibrahimshah@gmail.com of the issue"),
         ],
       ),
       actions: <Widget>[
@@ -135,7 +136,7 @@ class _PaymentState extends State<Payment> {
             merchantDisplayName: 'Ibrahim Shah'));
 
     setState(() {});
-    try {
+    
       await Stripe.instance.presentPaymentSheet();
       setState(() {
         isLoadingNextScreen = true;
@@ -149,12 +150,20 @@ class _PaymentState extends State<Payment> {
         Navigator.of(context)
             .pushNamed('/PaymentComplete', arguments: information);
       });
-    } catch (e) {
+     /* catch (e) {
+      if (e.toString() ==
+          "Error: StripeException(error: LocalizedErrorMessage(code: FailureCode.Canceled, localizedMessage: The payment has been canceled, message: The payment has been canceled, stripeErrorCode: null, declineCode: null, type: null))") {
+        print("payment cancelled");
+      } else {
+        print(e.toString());
       showDialog(
         context: context,
-        builder: (BuildContext context) => _buildPopupDialog( e.toString(), context),
+        builder: (BuildContext context) =>
+            _buildPopupDialog(e.toString(), context),
       );
-    }
+      }
+      
+    } */
   }
 }
 
