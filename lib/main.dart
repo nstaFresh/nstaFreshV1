@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'main.dart';
 import 'route_generator.dart';
@@ -19,7 +20,6 @@ void main() async {
   runApp(const MyApp());
 }
 
-//Color c = new Color.fromRGBO(0, 0, 0, 1.0);
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       onGenerateRoute: RouteGenerator.generateRoute,
-      //theme: ThemeData(scaffoldBackgroundColor: c),
     );
   }
 }
