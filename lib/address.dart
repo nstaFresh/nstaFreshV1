@@ -7,7 +7,6 @@ import 'address.dart';
 import 'payment.dart';
 import 'payment_complete.dart';
 
-//we need name, shoe name, description
 class Address extends StatelessWidget {
   final String name;
   final String shoeName;
@@ -82,6 +81,27 @@ class AddressContent extends StatefulWidget {
 class _AddressContentState extends State<AddressContent> {
   _AddressContentState();
 
+Widget _buildPopupDialog(BuildContext context) {
+    return new AlertDialog(
+      title: const Text('Error'),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Please Complete All Dialogues"),
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
+
   late AddressInfo infoForPayment;
   static TextEditingController addressLine1Controller = TextEditingController();
   static TextEditingController postalCodeController = TextEditingController();
@@ -91,8 +111,7 @@ class _AddressContentState extends State<AddressContent> {
   static TextEditingController pickUpTimeController = TextEditingController();
 
   bool shipped = false;
-  // bool shipped = false;
-  //isShipped _bool = isShipped.Yes;
+ 
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -164,7 +183,6 @@ class _AddressContentState extends State<AddressContent> {
                       onChanged: (value) {
                         setState(() {
                           shipped = false;
-                          //print(_bool);
                         });
                       },
                     ),
@@ -204,7 +222,6 @@ class _AddressContentState extends State<AddressContent> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      //const SizedBox(height: 30),
                       ElevatedButton(
                         onPressed: () {
                           String name = widget.name;
@@ -227,9 +244,12 @@ class _AddressContentState extends State<AddressContent> {
                               (shipped == false &&
                                   (pickUpDateController.text.isEmpty ||
                                       pickUpTimeController.text.isEmpty))) {
-                            print("fuck you");
+                            showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          _buildPopupDialog(context),
+                    );
                           } else {
-                            //add the boolean for shipping/not shipping into this constructor
                             AddressInfo infoForPayment = new AddressInfo(
                                 name,
                                 shoeName,
@@ -244,14 +264,7 @@ class _AddressContentState extends State<AddressContent> {
                                 pickUpDateController.text,
                                 pickUpTimeController.text);
 
-                            /*print(infoForPayment.name);
-                              print(infoForPayment.shoeName);
-                              print(infoForPayment.description);
-                              print(infoForPayment.phoneNumber);
-                              print(infoForPayment.addressLine);
-                              print(infoForPayment.postalCode);
-                              print(infoForPayment.city);
-                              print(infoForPayment.state);*/
+                          
 
                             Navigator.of(context).pushNamed('/Payment',
                                 arguments: infoForPayment);
@@ -270,8 +283,7 @@ class _AddressContentState extends State<AddressContent> {
 }
 
 class AddressInfo {
-  //we need name, shoeName, description, phoneNumber, address line, postal code,
-  //city, state,
+  
   final String name;
   final String shoeName;
   final String description;
@@ -285,7 +297,6 @@ class AddressInfo {
   final String pickUpDate;
   final String pickUpTime;
 
-  //add boolean for shipping or not shipping
   AddressInfo(
       this.name,
       this.shoeName,

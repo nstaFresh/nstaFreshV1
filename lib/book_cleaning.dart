@@ -41,12 +41,12 @@ class BookCleaningContent extends StatefulWidget {
 class _BookCleaningContentState extends State<BookCleaningContent> {
   Widget _buildPopupDialog(BuildContext context) {
     return new AlertDialog(
-      title: const Text('Popup example'),
+      title: const Text('Error'),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Hello"),
+          Text("Please Complete All Dialogues"),
         ],
       ),
       actions: <Widget>[
@@ -127,7 +127,6 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              //const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
                   if (nameController.text.isEmpty ||
@@ -136,7 +135,6 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
                       phoneNumberController.text.isEmpty ||
                       phoneNumberController.text.length != 10 ||
                       emailController.text.isEmpty) {
-                    print("fuck you");
 
                     showDialog(
                       context: context,
@@ -144,6 +142,7 @@ class _BookCleaningContentState extends State<BookCleaningContent> {
                           _buildPopupDialog(context),
                     );
                   } else {
+                    
                     Navigator.of(context).pushNamed('/Address',
                         arguments: BookCleaningInfo(
                             nameController.text,

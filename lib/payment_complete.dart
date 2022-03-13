@@ -12,10 +12,8 @@ class PaymentComplete extends StatelessWidget {
   final String email;
   final String pickUpDate;
   final String pickUpTime;
-  //add isShipped as part of the constructor
   PaymentComplete(this.shipped, this.email, this.pickUpDate, this.pickUpTime);
 
-  //String title = shipped.toString();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class PaymentComplete extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: PaymentCompleteContent(shipped, email, pickUpDate, pickUpTime
-          /**add a isShipped paramter to this cojnstrucotr */),
+         ),
     );
   }
 }
@@ -37,14 +35,12 @@ class PaymentCompleteContent extends StatefulWidget {
   final String pickUpTime;
   const PaymentCompleteContent(
       this.shipped, this.email, this.pickUpDate, this.pickUpTime);
-  //add isSHIpped param
   @override
   State<PaymentCompleteContent> createState() => _PaymentCompleteContentState();
 }
 
 class _PaymentCompleteContentState extends State<PaymentCompleteContent> {
-  //how to access in the state class:
-  //once inside widget build metod, you can just do widget.isShipped
+ 
   @override
   Widget build(BuildContext context) {
     final ButtonStyle style =

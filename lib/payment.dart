@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -15,9 +16,6 @@ import 'payment_complete.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Payment extends StatefulWidget {
-  //we need name, shoeName, description, phoneNumber, address line, postal code,
-  //city, state,
-
   final String name;
   final String shoeName;
   final String description;
@@ -30,7 +28,6 @@ class Payment extends StatefulWidget {
   final bool shipped;
   final String pickUpDate;
   final String pickUpTime;
-  //add final boolean is shipped
   const Payment(
       this.name,
       this.shoeName,
@@ -41,16 +38,38 @@ class Payment extends StatefulWidget {
       this.postalCode,
       this.city,
       this.state,
-      this.shipped, //add in constructor
+      this.shipped,
       this.pickUpDate,
-      this.pickUpTime
-      );
+      this.pickUpTime);
 
   @override
   _PaymentState createState() => _PaymentState();
 }
 
 class _PaymentState extends State<Payment> {
+  Widget _buildPopupDialog(String e, BuildContext context) {
+    return new AlertDialog(
+      title: const Text('Error'),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Error: " +
+              e.toString() +
+              " Please alert 104ibrahimshah@gmail.com of the issue"),
+        ],
+      ),
+      actions: <Widget>[
+        new ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
+
   bool isLoading = false;
   bool isLoadingNextScreen = false;
   @override
@@ -79,19 +98,7 @@ class _PaymentState extends State<Payment> {
   }
 
   Future<void> makePayment() async {
-    final url = Uri.parse(
-        dotenv.env['API_URL']!);
-
-    /*
-                  (widget.name);
-            print(widget.shoeName);
-            print(widget.description);
-            print(widget.phoneNumber);
-            print(widget.addressLine);
-            print(widget.postalCode);
-            print(widget.city);
-            print(widget.state);
-    */
+    final url = Uri.parse(dotenv.env["API_URL"]!);
 
     Map<String, String> request = {
       "name": widget.name,
@@ -116,10 +123,8 @@ class _PaymentState extends State<Payment> {
     setState(() {
       isLoading = false;
     });
-    print(response);
 
     Map<String, dynamic> paymentIntentData = jsonDecode(response.body);
-    print(paymentIntentData['clientSecret']);
 
     await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
@@ -130,24 +135,35 @@ class _PaymentState extends State<Payment> {
             merchantCountryCode: 'US',
             merchantDisplayName: 'Ibrahim Shah'));
 
-    setState(() {
-      //isLoadingNextScreen = true;
-    });
-    try {
+    setState(() {});
+    
       await Stripe.instance.presentPaymentSheet();
       setState(() {
         isLoadingNextScreen = true;
         paymentIntentData['clientSecret'] = null;
-        PaymentInfo information = new PaymentInfo(widget.shipped, widget.email, widget.pickUpDate, widget.pickUpTime,);
-        Navigator.of(context).pushNamed('/PaymentComplete',
-        arguments: information
-
-            //, arguments: create a class that just has the shipping as an instance variable
-            );
+        PaymentInfo information = new PaymentInfo(
+          widget.shipped,
+          widget.email,
+          widget.pickUpDate,
+          widget.pickUpTime,
+        );
+        Navigator.of(context)
+            .pushNamed('/PaymentComplete', arguments: information);
       });
-    } catch (e) {
-      print(e);
-    }
+     /* catch (e) {
+      if (e.toString() ==
+          "Error: StripeException(error: LocalizedErrorMessage(code: FailureCode.Canceled, localizedMessage: The payment has been canceled, message: The payment has been canceled, stripeErrorCode: null, declineCode: null, type: null))") {
+        print("payment cancelled");
+      } else {
+        print(e.toString());
+      showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+            _buildPopupDialog(e.toString(), context),
+      );
+      }
+      
+    } */
   }
 }
 
