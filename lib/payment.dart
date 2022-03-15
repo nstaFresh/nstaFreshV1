@@ -136,7 +136,7 @@ class _PaymentState extends State<Payment> {
             merchantDisplayName: 'Ibrahim Shah'));
 
     setState(() {});
-    
+    try{
       await Stripe.instance.presentPaymentSheet();
       setState(() {
         isLoadingNextScreen = true;
@@ -147,10 +147,12 @@ class _PaymentState extends State<Payment> {
           widget.pickUpDate,
           widget.pickUpTime,
         );
+      
         Navigator.of(context)
             .pushNamed('/PaymentComplete', arguments: information);
       });
-     /* catch (e) {
+    }
+      catch (e) {
       if (e.toString() ==
           "Error: StripeException(error: LocalizedErrorMessage(code: FailureCode.Canceled, localizedMessage: The payment has been canceled, message: The payment has been canceled, stripeErrorCode: null, declineCode: null, type: null))") {
         print("payment cancelled");
@@ -163,7 +165,7 @@ class _PaymentState extends State<Payment> {
       );
       }
       
-    } */
+    } 
   }
 }
 
